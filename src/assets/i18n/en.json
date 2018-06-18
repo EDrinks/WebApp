@@ -1,5 +1,11 @@
 {
+  "common": {
+    "save": "Save"
+  },
   "products": "Products",
   "tabs": "Tabs",
-  "title": "Hello World"
+  "title": "Hello World",
+  "user-settings": {
+    "language": "Language"
+  }
 }
