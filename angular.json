@@ -124,5 +124,10 @@
       }
     }
   },
-  "defaultProject": "edrinks"
+  "defaultProject": "edrinks",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

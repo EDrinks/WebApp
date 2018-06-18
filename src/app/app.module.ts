@@ -10,6 +10,7 @@ import { UserSettingsComponent } from './components/user-settings.component';
 import { AppRoutingModule } from './app-routing.module';
 import { StartComponent } from './components/start.component';
 import { FormsModule } from '@angular/forms';
+import { ContributionsComponent } from './components/contributions.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -19,7 +20,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     UserSettingsComponent,
-    StartComponent
+    StartComponent,
+    ContributionsComponent
   ],
   imports: [
     BrowserModule,
