@@ -1,3 +1,11 @@
 {
-  "title": "Hallo Welt"
+  "common": {
+    "save": "Speichern"
+  },
+  "products": "Produkte",
+  "tabs": "Listen",
+  "title": "Hallo Welt",
+  "user-settings": {
+    "language": "Sprache"
+  }
 }

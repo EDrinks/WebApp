@@ -3,9 +3,9 @@
   <form (ngSubmit)="saveSettings()" #settingsForm="ngForm">
     <div class="form-group">
       <label>{{'user-settings.language' | translate}}</label>
-      <select class="form-control">
-        <option>English</option>
-        <option>Deutsch</option>
+      <select class="form-control" [(ngModel)]="language" name="language">
+        <option [value]="'en'">English</option>
+        <option [value]="'de'">Deutsch</option>
       </select>
     </div>
 
