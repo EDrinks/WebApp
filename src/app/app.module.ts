@@ -6,6 +6,9 @@ import { AppConfigService } from './services/app-config.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { UserSettingsComponent } from './components/user-settings.component';
+import { AppRoutingModule } from './app-routing.module';
+import { StartComponent } from './components/start.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -13,7 +16,9 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UserSettingsComponent,
+    StartComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +29,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    AppRoutingModule
   ],
   providers: [
     AppConfigService,
