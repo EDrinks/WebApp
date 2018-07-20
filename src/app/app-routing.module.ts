@@ -6,6 +6,8 @@ import { ContributionsComponent } from './components/contributions.component';
 import { ProductListComponent } from './components/products/product-list.component';
 import { ServerErrorComponent } from './components/errors/server-error.component';
 import { NotFoundErrorComponent } from './components/errors/not-found-error.component';
+import { ProductsComponent } from './components/products/products.component';
+import { ProductAddComponent } from './components/products/product-add.component';
 
 const appRoutes: Routes = [
   {path: '', component: StartComponent},
@@ -13,7 +15,19 @@ const appRoutes: Routes = [
   {path: 'contributions', component: ContributionsComponent},
   {path: 'server-error', component: ServerErrorComponent},
   {path: 'not-found-error', component: NotFoundErrorComponent},
-  {path: 'products', component: ProductListComponent}
+  {
+    path: 'products', component: ProductsComponent, children: [
+      {
+        path: '', redirectTo: 'list', pathMatch: 'full'
+      },
+      {
+        path: 'list', component: ProductListComponent
+      },
+      {
+        path: 'add', component: ProductAddComponent
+      }
+    ]
+  }
 ];
 
 @NgModule({
