@@ -1,7 +1,39 @@
 <div class="container">
-  <div class="alert alert-danger">
-    error message
+  <div *ngIf="loading">
+    <i class="fas fa-spinner"></i>
   </div>
 
-  product list
+  <div *ngIf="!loading">
+    <div class="alert alert-danger" *ngIf="errorMessage">
+      {{errorMessage}}
+    </div>
+
+    <div *ngIf="!errorMessage">
+      <div class="p-2">
+        <a routerLink="/products/add" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+      </div>
+
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{product.name}}</td>
+          <td>{{product.price}}</td>
+          <td>
+            <a href="#">{{'common.edit' | translate}}</a>
+            |
+            <a href="#">{{'common.delete' | translate}}</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
 </div>

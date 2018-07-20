@@ -1,5 +1,7 @@
 {
   "common": {
+    "delete": "Delete",
+    "edit": "Edit",
     "save": "Save"
   },
   "errors": {
@@ -7,6 +9,10 @@
     "server-error": "Server Error"
   },
   "contributions": "Contributions",
+  "product": {
+    "name": "Name",
+    "price": "Price"
+  },
   "products": "Products",
   "tabs": "Tabs",
   "title": "Hello World",
