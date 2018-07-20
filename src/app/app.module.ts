@@ -11,6 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { StartComponent } from './components/start.component';
 import { FormsModule } from '@angular/forms';
 import { ContributionsComponent } from './components/contributions.component';
+import { ProductListComponent } from './components/products/product-list.component';
+import { BackendService } from './services/backend.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -21,7 +23,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     UserSettingsComponent,
     StartComponent,
-    ContributionsComponent
+    ContributionsComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
       deps: [AppConfigService],
       multi: true
-    }
+    },
+    BackendService
   ],
   bootstrap: [AppComponent]
 })
