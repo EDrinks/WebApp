@@ -1,5 +1,6 @@
 {
   "common": {
+    "cancel": "Cancel",
     "delete": "Delete",
     "edit": "Edit",
     "save": "Save"
@@ -11,7 +12,9 @@
   "contributions": "Contributions",
   "product": {
     "name": "Name",
-    "price": "Price"
+    "name-restriction": "Must be between 3 and 50 characters",
+    "price": "Price",
+    "price-restriction": "Must be above 0"
   },
   "products": "Products",
   "tabs": "Tabs",

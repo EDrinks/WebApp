@@ -17,6 +17,7 @@ import { ServerErrorComponent } from './components/errors/server-error.component
 import { NotFoundErrorComponent } from './components/errors/not-found-error.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductAddComponent } from './components/products/product-add.component';
+import { ProductMaskComponent } from './components/products/product-mask.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -32,7 +33,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     NotFoundErrorComponent,
     ProductsComponent,
     ProductListComponent,
-    ProductAddComponent
+    ProductAddComponent,
+    ProductMaskComponent
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,11 @@
-product add
+<form #productForm="ngForm" (ngSubmit)="onSave()">
+  <app-product-mask [product]="product"></app-product-mask>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary" [disabled]="!productForm.form.valid">
+      {{'common.save' | translate}}
+    </button>
+
+    <a routerLink="/products/list" class="ml-1">{{'common.cancel' | translate}}</a>
+  </div>
+</form>
