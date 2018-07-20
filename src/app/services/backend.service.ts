@@ -21,6 +21,13 @@ export class BackendService {
       }));
   }
 
+  createProduct(product: Product): Observable<any> {
+    return this.http.post(this.baseUrl + '/api/Products', product)
+      .pipe(catchError((error) => {
+        return this.handleError(error);
+      }));
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
