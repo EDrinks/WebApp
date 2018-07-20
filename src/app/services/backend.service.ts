@@ -1,32 +1,37 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AppConfigService } from './app-config.service';
-import { throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Product } from './model/Product';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class BackendService {
   private baseUrl = '';
 
-  constructor(config: AppConfigService, private http: HttpClient) {
+  constructor(config: AppConfigService, private http: HttpClient, private router: Router) {
     this.baseUrl = config.backendUrl;
   }
 
-  getProducts() {
-    this.http.get(this.baseUrl + '/api/Products')
-      .pipe(catchError(this.handleError));
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.baseUrl + '/api/Products')
+      .pipe(catchError((error) => {
+        return this.handleError(error);
+      }));
   }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
     } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
-      return throwError(error.error);
+      console.log(error);
+      if (error.status === 400) {
+        return throwError(error.error);
+      } else if (error.status === 404) {
+      } else if (error.status in [0, 500]) {
+        this.router.navigate(['server-error'], {skipLocationChange: true});
+      }
     }
 
     // return an observable with a user-facing error message

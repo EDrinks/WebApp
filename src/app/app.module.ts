@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { ContributionsComponent } from './components/contributions.component';
 import { ProductListComponent } from './components/products/product-list.component';
 import { BackendService } from './services/backend.service';
+import { ServerErrorComponent } from './components/errors/server-error.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -24,6 +25,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     UserSettingsComponent,
     StartComponent,
     ContributionsComponent,
+    ServerErrorComponent,
     ProductListComponent
   ],
   imports: [
