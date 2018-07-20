@@ -29,6 +29,7 @@ export class BackendService {
       if (error.status === 400) {
         return throwError(error.error);
       } else if (error.status === 404) {
+        this.router.navigate(['not-found-error'], {skipLocationChange: true});
       } else if (error.status in [0, 500]) {
         this.router.navigate(['server-error'], {skipLocationChange: true});
       }

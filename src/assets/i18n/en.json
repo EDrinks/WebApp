@@ -2,6 +2,10 @@
   "common": {
     "save": "Save"
   },
+  "errors": {
+    "not-found": "Requested resource not found",
+    "server-error": "Server Error"
+  },
   "contributions": "Contributions",
   "products": "Products",
   "tabs": "Tabs",

@@ -5,12 +5,14 @@ import { StartComponent } from './components/start.component';
 import { ContributionsComponent } from './components/contributions.component';
 import { ProductListComponent } from './components/products/product-list.component';
 import { ServerErrorComponent } from './components/errors/server-error.component';
+import { NotFoundErrorComponent } from './components/errors/not-found-error.component';
 
 const appRoutes: Routes = [
   {path: '', component: StartComponent},
   {path: 'user-settings', component: UserSettingsComponent},
   {path: 'contributions', component: ContributionsComponent},
   {path: 'server-error', component: ServerErrorComponent},
+  {path: 'not-found-error', component: NotFoundErrorComponent},
   {path: 'products', component: ProductListComponent}
 ];
 

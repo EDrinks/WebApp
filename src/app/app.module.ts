@@ -14,6 +14,7 @@ import { ContributionsComponent } from './components/contributions.component';
 import { ProductListComponent } from './components/products/product-list.component';
 import { BackendService } from './services/backend.service';
 import { ServerErrorComponent } from './components/errors/server-error.component';
+import { NotFoundErrorComponent } from './components/errors/not-found-error.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -26,6 +27,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     StartComponent,
     ContributionsComponent,
     ServerErrorComponent,
+    NotFoundErrorComponent,
     ProductListComponent
   ],
   imports: [
