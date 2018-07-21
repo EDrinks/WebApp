@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BackendService } from '../../services/backend.service';
 import { Product } from '../../services/model/Product';
 import { finalize } from 'rxjs/operators';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ProductDeleteModalComponent } from './product-delete-modal.component';
 
 @Component({
   selector: 'app-product-list',
@@ -12,10 +14,27 @@ export class ProductListComponent implements OnInit {
   errorMessage = '';
   products: Product[] = [];
 
-  constructor(private service: BackendService) {
+  @ViewChild('content') content;
+
+  constructor(private service: BackendService, private modalService: NgbModal) {
   }
 
   ngOnInit() {
+    this.loadProducts();
+  }
+
+  confirmDeleteProduct(product: Product) {
+    const modal = this.modalService.open(ProductDeleteModalComponent);
+    modal.componentInstance.product = product;
+
+    modal.result.then((deletedProduct: Product) => {
+      this.products = this.products.filter((prod) => {
+        return prod.id !== deletedProduct.id;
+      });
+    }, () => undefined);
+  }
+
+  private loadProducts() {
     this.loading = true;
 
     this.service.getProducts()

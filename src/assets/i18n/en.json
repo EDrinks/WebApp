@@ -11,6 +11,7 @@
   },
   "contributions": "Contributions",
   "product": {
+    "confirm-delete-product": "Confirm product deletion",
     "name": "Name",
     "name-restriction": "Must be between 3 and 50 characters",
     "price": "Price",

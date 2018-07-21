@@ -28,6 +28,13 @@ export class BackendService {
       }));
   }
 
+  deleteProduct(productId: string) {
+    return this.http.delete(this.baseUrl + `/api/Products/${productId}`)
+      .pipe(catchError((error) => {
+        return this.handleError(error);
+      }));
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
