@@ -39,6 +39,18 @@ export class BackendService {
     return this.getReq<Tab[]>(this.baseUrl + '/api/Tabs');
   }
 
+  getTab(tabId: string): Observable<Tab> {
+    return this.getReq(this.baseUrl + `/api/Tabs/${tabId}`);
+  }
+
+  createTab(tab: Tab) {
+    return this.postReq(this.baseUrl + '/api/Tabs', tab);
+  }
+
+  updateTab(tab: Tab) {
+    return this.putReq(this.baseUrl + `/api/Tabs/${tab.id}`, tab);
+  }
+
   private getReq<TResult>(url: string) {
     return this.http.get<TResult>(url)
       .pipe(catchError((error) => {

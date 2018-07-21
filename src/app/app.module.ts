@@ -23,6 +23,7 @@ import { ProductDeleteModalComponent } from './components/products/product-delet
 import { ProductMaskComponent } from './components/products/product-mask.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { TabListComponent } from './components/tabs/tab-list.component';
+import { TabMaskComponent } from './components/tabs/tab-mask.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -43,6 +44,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProductDeleteModalComponent,
     TabsComponent,
     TabListComponent,
+    TabMaskComponent,
     PricePipe
   ],
   entryComponents: [

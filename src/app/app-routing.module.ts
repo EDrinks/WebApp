@@ -10,6 +10,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { ProductMaskComponent } from './components/products/product-mask.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { TabListComponent } from './components/tabs/tab-list.component';
+import { TabMaskComponent } from './components/tabs/tab-mask.component';
 
 const appRoutes: Routes = [
   {path: '', component: StartComponent},
@@ -40,6 +41,12 @@ const appRoutes: Routes = [
       },
       {
         path: 'list', component: TabListComponent
+      },
+      {
+        path: 'add', component: TabMaskComponent
+      },
+      {
+        path: 'edit/:id', component: TabMaskComponent
       }
     ]
   }
