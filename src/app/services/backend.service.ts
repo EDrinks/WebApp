@@ -21,8 +21,22 @@ export class BackendService {
       }));
   }
 
+  getProduct(productId: string): Observable<Product> {
+    return this.http.get<Product>(this.baseUrl + `/api/Products/${productId}`)
+      .pipe(catchError((error) => {
+        return this.handleError(error);
+      }));
+  }
+
   createProduct(product: Product): Observable<any> {
     return this.http.post(this.baseUrl + '/api/Products', product)
+      .pipe(catchError((error) => {
+        return this.handleError(error);
+      }));
+  }
+
+  updateProduct(product: Product): Observable<any> {
+    return this.http.put(this.baseUrl + `/api/Products/${product.id}`, product)
       .pipe(catchError((error) => {
         return this.handleError(error);
       }));

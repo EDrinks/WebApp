@@ -22,6 +22,7 @@ import { ValidationErrorComponent } from './components/shared/validation-error.c
 import { PricePipe } from './pipes/price.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductDeleteModalComponent } from './components/products/product-delete-modal.component';
+import { ProductEditComponent } from './components/products/product-edit.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -39,6 +40,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProductsComponent,
     ProductListComponent,
     ProductAddComponent,
+    ProductEditComponent,
     ProductMaskComponent,
     ProductDeleteModalComponent,
     PricePipe

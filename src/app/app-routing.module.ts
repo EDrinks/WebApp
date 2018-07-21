@@ -8,6 +8,7 @@ import { ServerErrorComponent } from './components/errors/server-error.component
 import { NotFoundErrorComponent } from './components/errors/not-found-error.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductAddComponent } from './components/products/product-add.component';
+import { ProductEditComponent } from './components/products/product-edit.component';
 
 const appRoutes: Routes = [
   {path: '', component: StartComponent},
@@ -25,6 +26,9 @@ const appRoutes: Routes = [
       },
       {
         path: 'add', component: ProductAddComponent
+      },
+      {
+        path: 'edit/:id', component: ProductEditComponent
       }
     ]
   }

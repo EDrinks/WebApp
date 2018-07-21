@@ -1,0 +1,20 @@
+<div *ngIf="loading">
+  <i class="fas fa-spinner"></i>
+</div>
+
+<form #productForm="ngForm" (ngSubmit)="onSave()" *ngIf="product">
+  <app-product-mask [product]="product"></app-product-mask>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary" [disabled]="!productForm.form.valid || submitting">
+      <span *ngIf="submitting"><i class="fas fa-spinner"></i></span>
+      {{'common.save' | translate}}
+    </button>
+
+    <a routerLink="/products/list" class="ml-1">{{'common.cancel' | translate}}</a>
+  </div>
+
+  <div class="form-group">
+    <app-validation-error [validationError]="error"></app-validation-error>
+  </div>
+</form>
