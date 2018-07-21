@@ -1,0 +1,8 @@
+<div class="alert alert-danger" *ngIf="validationError">
+  <div *ngFor="let key of keys">
+    {{key}}
+    <ul>
+      <li *ngFor="let message of validationError[key]">{{message}}</li>
+    </ul>
+  </div>
+</div>

@@ -32,7 +32,6 @@ export class BackendService {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
     } else {
-      console.log(error);
       if (error.status === 400) {
         return throwError(error.error);
       } else if (error.status === 404) {

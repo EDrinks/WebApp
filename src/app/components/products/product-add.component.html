@@ -9,4 +9,8 @@
 
     <a routerLink="/products/list" class="ml-1">{{'common.cancel' | translate}}</a>
   </div>
+
+  <div class="form-group">
+    <app-validation-error [validationError]="error"></app-validation-error>
+  </div>
 </form>

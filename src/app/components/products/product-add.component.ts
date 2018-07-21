@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class ProductAddComponent {
   product = new Product();
   submitting = false;
-  errorMessage = '';
+  error: any;
 
   constructor(private service: BackendService, private router: Router) {
   }
@@ -26,7 +26,7 @@ export class ProductAddComponent {
       .subscribe(() => {
         this.router.navigate(['/products', 'list']);
       }, (error) => {
-        console.log(error);
+        this.error = error;
       });
   }
 }
