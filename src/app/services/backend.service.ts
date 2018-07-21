@@ -5,6 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Product } from './model/Product';
 import { Router } from '@angular/router';
+import { Tab } from './model/Tab';
 
 @Injectable()
 export class BackendService {
@@ -15,35 +16,52 @@ export class BackendService {
   }
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.baseUrl + '/api/Products')
-      .pipe(catchError((error) => {
-        return this.handleError(error);
-      }));
+    return this.getReq<Product[]>(this.baseUrl + '/api/Products');
   }
 
   getProduct(productId: string): Observable<Product> {
-    return this.http.get<Product>(this.baseUrl + `/api/Products/${productId}`)
-      .pipe(catchError((error) => {
-        return this.handleError(error);
-      }));
+    return this.getReq<Product>(this.baseUrl + `/api/Products/${productId}`);
   }
 
   createProduct(product: Product): Observable<any> {
-    return this.http.post(this.baseUrl + '/api/Products', product)
-      .pipe(catchError((error) => {
-        return this.handleError(error);
-      }));
+    return this.postReq(this.baseUrl + '/api/Products', product);
   }
 
   updateProduct(product: Product): Observable<any> {
-    return this.http.put(this.baseUrl + `/api/Products/${product.id}`, product)
+    return this.putReq(this.baseUrl + `/api/Products/${product.id}`, product);
+  }
+
+  deleteProduct(productId: string) {
+    return this.deleteReq(this.baseUrl + `/api/Products/${productId}`);
+  }
+
+  getTabs(): Observable<Tab[]> {
+    return this.getReq<Tab[]>(this.baseUrl + '/api/Tabs');
+  }
+
+  private getReq<TResult>(url: string) {
+    return this.http.get<TResult>(url)
       .pipe(catchError((error) => {
         return this.handleError(error);
       }));
   }
 
-  deleteProduct(productId: string) {
-    return this.http.delete(this.baseUrl + `/api/Products/${productId}`)
+  private postReq(url: string, payload: any) {
+    return this.http.post(url, payload)
+      .pipe(catchError((error) => {
+        return this.handleError(error);
+      }));
+  }
+
+  private putReq(url: string, payload: any) {
+    return this.http.put(url, payload)
+      .pipe(catchError((error) => {
+        return this.handleError(error);
+      }));
+  }
+
+  private deleteReq(url: string) {
+    return this.http.delete(url)
       .pipe(catchError((error) => {
         return this.handleError(error);
       }));

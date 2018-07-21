@@ -18,6 +18,9 @@
     "price-restriction": "Must be above 0"
   },
   "products": "Products",
+  "tab": {
+    "name": "Name"
+  },
   "tabs": "Tabs",
   "title": "Hello World",
   "user-settings": {

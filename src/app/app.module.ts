@@ -21,6 +21,8 @@ import { PricePipe } from './pipes/price.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductDeleteModalComponent } from './components/products/product-delete-modal.component';
 import { ProductMaskComponent } from './components/products/product-mask.component';
+import { TabsComponent } from './components/tabs/tabs.component';
+import { TabListComponent } from './components/tabs/tab-list.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -39,6 +41,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProductListComponent,
     ProductMaskComponent,
     ProductDeleteModalComponent,
+    TabsComponent,
+    TabListComponent,
     PricePipe
   ],
   entryComponents: [

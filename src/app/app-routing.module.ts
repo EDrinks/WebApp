@@ -8,6 +8,8 @@ import { ServerErrorComponent } from './components/errors/server-error.component
 import { NotFoundErrorComponent } from './components/errors/not-found-error.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductMaskComponent } from './components/products/product-mask.component';
+import { TabsComponent } from './components/tabs/tabs.component';
+import { TabListComponent } from './components/tabs/tab-list.component';
 
 const appRoutes: Routes = [
   {path: '', component: StartComponent},
@@ -28,6 +30,16 @@ const appRoutes: Routes = [
       },
       {
         path: 'edit/:id', component: ProductMaskComponent
+      }
+    ]
+  },
+  {
+    path: 'tabs', component: TabsComponent, children: [
+      {
+        path: '', redirectTo: 'list', pathMatch: 'full'
+      },
+      {
+        path: 'list', component: TabListComponent
       }
     ]
   }

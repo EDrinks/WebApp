@@ -1,0 +1,30 @@
+<div *ngIf="loading">
+  <i class="fas fa-spinner"></i>
+</div>
+
+<div *ngIf="!loading">
+  <div class="p-2">
+    <a routerLink="/tabs/add" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+  </div>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>{{'tab.name' | translate}}</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let tab of tabs">
+      <td>{{tab.name}}</td>
+      <td>
+        <a [routerLink]="['/tabs', 'edit', tab.id]" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+        <button type="button" class="btn btn-danger ml-2" (click)="confirmDeleteTab(tab)">
+          <i class="fas fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
