@@ -16,13 +16,11 @@ import { BackendService } from './services/backend.service';
 import { ServerErrorComponent } from './components/errors/server-error.component';
 import { NotFoundErrorComponent } from './components/errors/not-found-error.component';
 import { ProductsComponent } from './components/products/products.component';
-import { ProductAddComponent } from './components/products/product-add.component';
-import { ProductMaskComponent } from './components/products/product-mask.component';
 import { ValidationErrorComponent } from './components/shared/validation-error.component';
 import { PricePipe } from './pipes/price.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductDeleteModalComponent } from './components/products/product-delete-modal.component';
-import { ProductEditComponent } from './components/products/product-edit.component';
+import { ProductMaskComponent } from './components/products/product-mask.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -39,8 +37,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     ValidationErrorComponent,
     ProductsComponent,
     ProductListComponent,
-    ProductAddComponent,
-    ProductEditComponent,
     ProductMaskComponent,
     ProductDeleteModalComponent,
     PricePipe

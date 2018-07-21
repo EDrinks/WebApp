@@ -7,8 +7,7 @@ import { ProductListComponent } from './components/products/product-list.compone
 import { ServerErrorComponent } from './components/errors/server-error.component';
 import { NotFoundErrorComponent } from './components/errors/not-found-error.component';
 import { ProductsComponent } from './components/products/products.component';
-import { ProductAddComponent } from './components/products/product-add.component';
-import { ProductEditComponent } from './components/products/product-edit.component';
+import { ProductMaskComponent } from './components/products/product-mask.component';
 
 const appRoutes: Routes = [
   {path: '', component: StartComponent},
@@ -25,10 +24,10 @@ const appRoutes: Routes = [
         path: 'list', component: ProductListComponent
       },
       {
-        path: 'add', component: ProductAddComponent
+        path: 'add', component: ProductMaskComponent
       },
       {
-        path: 'edit/:id', component: ProductEditComponent
+        path: 'edit/:id', component: ProductMaskComponent
       }
     ]
   }
