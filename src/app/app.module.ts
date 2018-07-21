@@ -19,6 +19,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { ProductAddComponent } from './components/products/product-add.component';
 import { ProductMaskComponent } from './components/products/product-mask.component';
 import { ValidationErrorComponent } from './components/shared/validation-error.component';
+import { PricePipe } from './pipes/price.pipe';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -36,7 +37,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProductsComponent,
     ProductListComponent,
     ProductAddComponent,
-    ProductMaskComponent
+    ProductMaskComponent,
+    PricePipe
   ],
   imports: [
     BrowserModule,
