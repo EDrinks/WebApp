@@ -24,6 +24,7 @@ import { ProductMaskComponent } from './components/products/product-mask.compone
 import { TabsComponent } from './components/tabs/tabs.component';
 import { TabListComponent } from './components/tabs/tab-list.component';
 import { TabMaskComponent } from './components/tabs/tab-mask.component';
+import { TabDeleteModalComponent } from './components/tabs/tab-delete-modal.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -45,10 +46,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     TabsComponent,
     TabListComponent,
     TabMaskComponent,
+    TabDeleteModalComponent,
     PricePipe
   ],
   entryComponents: [
-    ProductDeleteModalComponent
+    ProductDeleteModalComponent,
+    TabDeleteModalComponent
   ],
   imports: [
     BrowserModule,

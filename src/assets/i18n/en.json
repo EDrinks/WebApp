@@ -19,6 +19,7 @@
   },
   "products": "Products",
   "tab": {
+    "confirm-delete-tab": "Confirm tab deletion",
     "name": "Name"
   },
   "tabs": "Tabs",

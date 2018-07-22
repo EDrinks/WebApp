@@ -51,6 +51,10 @@ export class BackendService {
     return this.putReq(this.baseUrl + `/api/Tabs/${tab.id}`, tab);
   }
 
+  deleteTab(tabId: string) {
+    return this.deleteReq(this.baseUrl + `/api/Tabs/${tabId}`);
+  }
+
   private getReq<TResult>(url: string) {
     return this.http.get<TResult>(url)
       .pipe(catchError((error) => {

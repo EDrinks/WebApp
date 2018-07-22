@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../../services/backend.service';
 import { finalize } from 'rxjs/operators';
 import { Tab } from '../../services/model/Tab';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TabDeleteModalComponent } from './tab-delete-modal.component';
 
 @Component({
   selector: 'app-tab-list',
@@ -11,7 +13,7 @@ export class TabListComponent implements OnInit {
   loading = false;
   tabs: Tab[] = [];
 
-  constructor(private service: BackendService) {
+  constructor(private service: BackendService, private modalService: NgbModal) {
 
   }
 
@@ -20,6 +22,14 @@ export class TabListComponent implements OnInit {
   }
 
   confirmDeleteTab(tab: Tab) {
+    const modal = this.modalService.open(TabDeleteModalComponent);
+    modal.componentInstance.tab = tab;
+
+    modal.result.then((deletedTab: Tab) => {
+      this.tabs = this.tabs.filter((loadedTab) => {
+        return loadedTab.id !== deletedTab.id;
+      });
+    }, () => undefined);
   }
 
   private loadTabs() {
