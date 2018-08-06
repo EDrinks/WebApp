@@ -1,3 +1,35 @@
-<div class="container">
-  start component
+<div class="container-fluid cmp-Start__content">
+  <div class="row">
+    <div class="col-sm">
+      <div *ngIf="tabsLoading">
+        <i class="fas fa-spinner"></i>
+      </div>
+
+      <div class="alert alert-danger" *ngIf="tabsError">
+        {{tabsError}}
+      </div>
+
+      <div *ngIf="!tabsLoading && !tabsError">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let tab of tabs" (click)="selectTab(tab)"
+              [ngClass]="{'active': tab === selectedTab}">{{tab.name}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <div class="alert alert-danger">
+        cannot load products
+        <br>
+        error message
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <div class="alert alert-danger">
+        cannot load history
+      </div>
+    </div>
+  </div>
 </div>
