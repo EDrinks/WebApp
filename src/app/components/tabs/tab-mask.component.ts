@@ -24,8 +24,8 @@ export class TabMaskComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       if (params['id']) {
         this.loadTab(params['id']);
+        this.createMode = false;
       } else {
-        this.createMode = true;
         this.tab = new Tab();
       }
     });
