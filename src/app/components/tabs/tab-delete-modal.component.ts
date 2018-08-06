@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Tab } from '../../services/model/Tab';
 import { BackendService } from '../../services/backend.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tab-delete-modal',
@@ -36,6 +37,9 @@ export class TabDeleteModalComponent {
     this.deleting = true;
 
     this.service.deleteTab(this.tab.id)
+      .pipe(finalize(() => {
+        this.deleting = false;
+      }))
       .subscribe(() => {
         this.activeModal.close(this.tab);
       }, (error) => {
