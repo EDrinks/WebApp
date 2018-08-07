@@ -9,16 +9,22 @@ import { Product } from '../../services/model/Product';
   styleUrls: ['./tab-order.component.scss']
 })
 export class TabOrderComponent implements OnInit {
+  noProductsFound = false;
+
   products: Product[] = [];
+  selectedProduct: Product;
   productsLoading = false;
   productsError = '';
-  noProductsFound = false;
 
   constructor(private service: BackendService) {
   }
 
   ngOnInit() {
     this.loadProducts();
+  }
+
+  selectProduct(product: Product) {
+    this.selectedProduct = product;
   }
 
   private loadProducts() {
@@ -30,7 +36,12 @@ export class TabOrderComponent implements OnInit {
       }))
       .subscribe((products: Product[]) => {
         this.products = products;
-        this.noProductsFound = products.length === 0;
+
+        if (products.length > 0) {
+          this.selectedProduct = products[0];
+        } else {
+          this.noProductsFound = true;
+        }
       }, (error) => {
         this.productsError = error;
       });

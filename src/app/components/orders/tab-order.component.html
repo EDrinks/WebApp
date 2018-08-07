@@ -25,7 +25,8 @@
 
       <div *ngIf="!productsLoading && !productsError">
         <button type="button" class="btn btn-outline-primary cmp-TabOrder__product"
-                *ngFor="let product of products">
+                *ngFor="let product of products" [ngClass]="{'active': product === selectedProduct}"
+                (click)="selectProduct(product)">
           {{product.name}}
           ({{product.price | price}})
         </button>
@@ -34,6 +35,7 @@
     </div>
 
     <div class="col-sm">
+      <h3>{{selectedProduct?.name}} - {{selectedProduct?.price | price}}</h3>
 
       <button type="button" class="btn btn-lg btn-outline-primary mr-2">+1</button>
       <button type="button" class="btn btn-lg btn-outline-primary mr-2">+2</button>
