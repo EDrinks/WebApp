@@ -9,7 +9,9 @@
   "components": {
     "tab-order": {
       "create-product": "Create Product",
-      "no-products-found": "No products found."
+      "no-products-found": "No products found.",
+      "ordered-everything": "Ordered Everything",
+      "ordered-product": "Ordered {{name}}"
     }
   },
   "errors": {
