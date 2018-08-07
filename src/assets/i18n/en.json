@@ -6,6 +6,12 @@
     "edit": "Edit",
     "save": "Save"
   },
+  "components": {
+    "tab-order": {
+      "create-product": "Create Product",
+      "no-products-found": "No products found."
+    }
+  },
   "errors": {
     "not-found": "Requested resource not found",
     "server-error": "Server Error"

@@ -6,7 +6,15 @@
 </div>
 
 <div class="container-fluid cmp-TabOrder__content">
-  <div class="row">
+  <div *ngIf="noProductsFound">
+    <div class="alert alert-warning">
+      {{'components.tab-order.no-products-found' | translate}}
+      <br>
+      <a [routerLink]="['/', 'products', 'add']">{{'components.tab-order.create-product' | translate}}</a>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="!noProductsFound">
     <div class="col-sm">
 
       <app-loading *ngIf="productsLoading"></app-loading>
@@ -26,7 +34,17 @@
     </div>
 
     <div class="col-sm">
-      <h2>ordering</h2>
+
+      <button type="button" class="btn btn-lg btn-outline-primary mr-2">+1</button>
+      <button type="button" class="btn btn-lg btn-outline-primary mr-2">+2</button>
+      <button type="button" class="btn btn-lg btn-outline-primary mr-2">+3</button>
+      <button type="button" class="btn btn-lg btn-outline-primary mr-2">+4</button>
+      <button type="button" class="btn btn-lg btn-outline-primary mr-2">+5</button>
+
+      <hr>
+
+      <h3>Last Orders</h3>
+
     </div>
   </div>
 </div>

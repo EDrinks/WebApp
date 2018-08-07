@@ -12,6 +12,7 @@ export class TabOrderComponent implements OnInit {
   products: Product[] = [];
   productsLoading = false;
   productsError = '';
+  noProductsFound = false;
 
   constructor(private service: BackendService) {
   }
@@ -29,6 +30,7 @@ export class TabOrderComponent implements OnInit {
       }))
       .subscribe((products: Product[]) => {
         this.products = products;
+        this.noProductsFound = products.length === 0;
       }, (error) => {
         this.productsError = error;
       });
