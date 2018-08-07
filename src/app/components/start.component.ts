@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../services/backend.service';
 import { Tab } from '../services/model/Tab';
 import { finalize } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-start',
@@ -12,9 +13,8 @@ export class StartComponent implements OnInit {
   tabs: Tab[] = [];
   tabsLoading = false;
   tabsError = '';
-  selectedTab: Tab = null;
 
-  constructor(private service: BackendService) {
+  constructor(private service: BackendService, private router: Router) {
   }
 
   ngOnInit() {
@@ -22,7 +22,7 @@ export class StartComponent implements OnInit {
   }
 
   selectTab(tab: Tab) {
-    this.selectedTab = tab;
+    this.router.navigate(['tab', tab.id]);
   }
 
   private loadTabs() {
@@ -34,12 +34,7 @@ export class StartComponent implements OnInit {
         this.tabsLoading = false;
       }))
       .subscribe((tabs: Tab[]) => {
-        this.tabs = tabs.sort((a, b) => {
-          if (a.name < b.name) {
-            return -1;
-          }
-          return 1;
-        });
+        this.tabs = tabs;
       }, (error) => {
         this.tabsError = error;
       });

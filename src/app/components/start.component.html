@@ -8,7 +8,7 @@
   </div>
 
   <button type="button" class="btn btn-outline-primary cmp-Start__tab"
-          *ngFor="let tab of tabs" (click)="selectTab(tab)" [ngClass]="{'active': tab === selectedTab}">
+          *ngFor="let tab of tabs" (click)="selectTab(tab)">
     {{tab.name}}
   </button>
 </div>

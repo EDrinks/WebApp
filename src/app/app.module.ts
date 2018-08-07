@@ -25,6 +25,7 @@ import { TabsComponent } from './components/tabs/tabs.component';
 import { TabListComponent } from './components/tabs/tab-list.component';
 import { TabMaskComponent } from './components/tabs/tab-mask.component';
 import { TabDeleteModalComponent } from './components/tabs/tab-delete-modal.component';
+import { TabOrderComponent } from './components/orders/tab-order.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -47,6 +48,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     TabListComponent,
     TabMaskComponent,
     TabDeleteModalComponent,
+    TabOrderComponent,
     PricePipe
   ],
   entryComponents: [
