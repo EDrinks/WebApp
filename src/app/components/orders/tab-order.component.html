@@ -1,8 +1,30 @@
 <div class="container-fluid">
+  <a routerLink="/" class="btn btn-secondary">
+    <i class="fas fa-arrow-left"></i>
+    {{'common.back' | translate}}
+  </a>
+</div>
+
+<div class="container-fluid cmp-TabOrder__content">
   <div class="row">
     <div class="col-sm">
-      <h2>products</h2>
+
+      <app-loading *ngIf="productsLoading"></app-loading>
+
+      <div class="alert alert-danger" *ngIf="productsError">
+        {{productsError}}
+      </div>
+
+      <div *ngIf="!productsLoading && !productsError">
+        <button type="button" class="btn btn-outline-primary cmp-TabOrder__product"
+                *ngFor="let product of products">
+          {{product.name}}
+          ({{product.price | price}})
+        </button>
+      </div>
+
     </div>
+
     <div class="col-sm">
       <h2>ordering</h2>
     </div>

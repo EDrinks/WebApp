@@ -1,0 +1,12 @@
+.cmp-TabOrder {
+  &__content {
+    margin-top: 5px;
+  }
+
+  &__product {
+    width: 250px;
+    margin-right: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
