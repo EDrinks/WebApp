@@ -8,6 +8,8 @@ import { LANGUAGE } from './constants';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  year = (new Date()).getFullYear();
+
   constructor(private translate: TranslateService) {
     translate.setDefaultLang('en');
     translate.use('en');
