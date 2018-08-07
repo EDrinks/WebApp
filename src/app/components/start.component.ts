@@ -34,7 +34,12 @@ export class StartComponent implements OnInit {
         this.tabsLoading = false;
       }))
       .subscribe((tabs: Tab[]) => {
-        this.tabs = tabs;
+        this.tabs = tabs.sort((a, b) => {
+          if (a.name < b.name) {
+            return -1;
+          }
+          return 1;
+        });
       }, (error) => {
         this.tabsError = error;
       });
