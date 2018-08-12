@@ -37,11 +37,13 @@
     <div class="col-sm">
       <h3>{{selectedProduct?.name}} - {{selectedProduct?.price | price}}</h3>
 
-      <button type="button" class="btn btn-lg btn-outline-primary mr-2">+1</button>
-      <button type="button" class="btn btn-lg btn-outline-primary mr-2">+2</button>
-      <button type="button" class="btn btn-lg btn-outline-primary mr-2">+3</button>
-      <button type="button" class="btn btn-lg btn-outline-primary mr-2">+4</button>
-      <button type="button" class="btn btn-lg btn-outline-primary mr-2">+5</button>
+      <button type="button" class="btn btn-lg btn-outline-primary mr-2"
+              *ngFor="let quantity of orderButtons" (click)="orderProduct(quantity)">+{{quantity}}
+      </button>
+
+      <div class="alert alert-danger mt-2" *ngIf="creatingOrderError">
+        {{creatingOrderError}}
+      </div>
 
       <div>
         {{'components.tab-order.ordered-product' | translate:selectedProduct}}: 3 (&Sigma; 3.30 EUR)
@@ -52,6 +54,16 @@
       <hr>
 
       <h3>Last Orders</h3>
+
+      <div class="alert alert-danger" *ngIf="loadingOrdersError">
+        {{loadingOrdersError}}
+      </div>
+
+      <ul>
+        <li *ngFor="let order of orders">
+          {{order.quantity}}x{{productIdToName[order.productId]}} (&Sigma; {{order.quantity * order.productPrice | price}})
+        </li>
+      </ul>
 
     </div>
   </div>

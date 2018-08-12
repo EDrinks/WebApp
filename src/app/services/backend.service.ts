@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { Product } from './model/Product';
 import { Router } from '@angular/router';
 import { Tab } from './model/Tab';
+import { Order } from './model/Order';
 
 @Injectable()
 export class BackendService {
@@ -53,6 +54,18 @@ export class BackendService {
 
   deleteTab(tabId: string) {
     return this.deleteReq(this.baseUrl + `/api/Tabs/${tabId}`);
+  }
+
+  getOrders(tabId: string): Observable<Order[]> {
+    return this.getReq<Order[]>(this.baseUrl + `/api/Tabs/${tabId}/Orders`);
+  }
+
+  createOrder(tabId: string, productId: string, quantity: number) {
+    return this.postReq(this.baseUrl + `/api/Tabs/${tabId}/Orders`, {
+      tabId,
+      productId,
+      quantity
+    });
   }
 
   private getReq<TResult>(url: string) {
