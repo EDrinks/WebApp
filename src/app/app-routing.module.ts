@@ -12,9 +12,11 @@ import { TabsComponent } from './components/tabs/tabs.component';
 import { TabListComponent } from './components/tabs/tab-list.component';
 import { TabMaskComponent } from './components/tabs/tab-mask.component';
 import { TabOrderComponent } from './components/orders/tab-order.component';
+import { CallbackComponent } from './callback.component';
 
 const appRoutes: Routes = [
   {path: '', component: StartComponent},
+  {path: 'callback', component: CallbackComponent},
   {path: 'tab/:id', component: TabOrderComponent},
   {path: 'user-settings', component: UserSettingsComponent},
   {path: 'contributions', component: ContributionsComponent},

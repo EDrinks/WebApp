@@ -29,6 +29,8 @@ import { TabOrderComponent } from './components/orders/tab-order.component';
 import { LoadingComponent } from './components/shared/loading.component';
 import { UserSettingsService } from './services/user-settings.service';
 import { LocaleDatePipe } from './pipes/locale-date.pipe';
+import { AuthService } from './services/auth.service';
+import { CallbackComponent } from './callback.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -53,6 +55,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     TabDeleteModalComponent,
     TabOrderComponent,
     LoadingComponent,
+    CallbackComponent,
+    // pipes
     PricePipe,
     LocaleDatePipe
   ],
@@ -85,7 +89,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       multi: true
     },
     BackendService,
-    UserSettingsService
+    UserSettingsService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

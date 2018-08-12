@@ -1,29 +1,38 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom: 10px;">
-  <a class="navbar-brand" routerLink="/">E-Drinks</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<div *ngIf="auth.isAuthenticated()">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom: 10px;">
+    <a class="navbar-brand" routerLink="/">E-Drinks</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/products">{{'products' | translate}}</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/tabs">{{'tabs' | translate}}</a>
-      </li>
-    </ul>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/products">{{'products' | translate}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/tabs">{{'tabs' | translate}}</a>
+        </li>
+      </ul>
 
-    <ul class="navbar-nav my-2 my-lg-0">
-      <li class="nav-item">
-        <a routerLink="user-settings" routerLinkActive="active" class="nav-link"><i class="fas fa-user"></i></a>
-      </li>
-    </ul>
-  </div>
-</nav>
+      <ul class="navbar-nav my-2 my-lg-0">
+        <li class="nav-item">
+          <a routerLink="user-settings" routerLinkActive="active" class="nav-link"><i class="fas fa-user"></i></a>
+        </li>
+        <li class="nav-item">
+          <a href="javascript:void(0)" class="nav-link" (click)="auth.logout()"><i class="fas fa-sign-out-alt"></i></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+</div>
+
+<div *ngIf="!auth.isAuthenticated()" class="container mt-5">
+  <button type="button" class="btn btn-lg btn-primary" (click)="auth.login()">{{'common.login' | translate}}</button>
+</div>
 
 <footer class="footer">
   <div class="container">

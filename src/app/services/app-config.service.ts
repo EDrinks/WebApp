@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class AppConfigService {
   backendUrl = '';
+  auth: any = {};
 
   constructor(private http: HttpClient) {
 
@@ -15,8 +16,9 @@ export class AppConfigService {
       this.http.get(document.baseURI + `assets/${environment.configFile}`)
         .subscribe((config) => {
           this.backendUrl = config['backendUrl'];
+          this.auth = config['auth'];
           resolve();
-        }, (error) => {
+        }, () => {
           reject();
         });
     });

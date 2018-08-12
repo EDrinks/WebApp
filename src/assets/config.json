@@ -1,3 +1,11 @@
 {
-  "backendUrl": ""
+  "backendUrl": "",
+  "auth": {
+    "clientID": "",
+    "domain": "",
+    "responseType": "",
+    "audience": "",
+    "redirectUri": "",
+    "scope": ""
+  }
 }
