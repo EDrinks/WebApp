@@ -27,6 +27,7 @@ import { TabMaskComponent } from './components/tabs/tab-mask.component';
 import { TabDeleteModalComponent } from './components/tabs/tab-delete-modal.component';
 import { TabOrderComponent } from './components/orders/tab-order.component';
 import { LoadingComponent } from './components/shared/loading.component';
+import { UserSettingsService } from './services/user-settings.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -81,7 +82,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       deps: [AppConfigService],
       multi: true
     },
-    BackendService
+    BackendService,
+    UserSettingsService
   ],
   bootstrap: [AppComponent]
 })

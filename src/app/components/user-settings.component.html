@@ -4,8 +4,7 @@
     <div class="form-group">
       <label>{{'user-settings.language' | translate}}</label>
       <select class="form-control" [(ngModel)]="language" name="language">
-        <option [value]="'en'">English</option>
-        <option [value]="'de'">Deutsch</option>
+        <option *ngFor="let lang of languages" [ngValue]="lang">{{lang.label}}</option>
       </select>
     </div>
 

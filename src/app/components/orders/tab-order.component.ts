@@ -4,6 +4,7 @@ import { finalize } from 'rxjs/operators';
 import { Product } from '../../services/model/Product';
 import { ActivatedRoute } from '@angular/router';
 import { Order } from '../../services/model/Order';
+import { UserSettingsService } from '../../services/user-settings.service';
 
 @Component({
   selector: 'app-tab-order',
@@ -28,8 +29,11 @@ export class TabOrderComponent implements OnInit {
 
   orderButtons = [1, 2, 3, 4, 5];
   productIdToName = {};
+  dateFormat = '';
 
-  constructor(private service: BackendService, private activeRoute: ActivatedRoute) {
+  constructor(private service: BackendService, private activeRoute: ActivatedRoute, private userSettings: UserSettingsService) {
+    this.dateFormat = userSettings.dateFormat;
+    console.log('date format', this.dateFormat);
   }
 
   ngOnInit() {
