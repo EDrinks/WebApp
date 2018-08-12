@@ -45,15 +45,22 @@
         {{creatingOrderError}}
       </div>
 
-      <div>
-        {{'components.tab-order.ordered-product' | translate:selectedProduct}}: 3 (&Sigma; 3.30 EUR)
-        <br>
-        {{'components.tab-order.ordered-everything' | translate}}: 8 (&Sigma; 7.50 EUR)
-      </div>
+      <table>
+        <tr>
+          <td>{{'components.tab-order.ordered-product' | translate:selectedProduct}}:</td>
+          <td>{{getSelectedProductCount()}}</td>
+          <td>(&Sigma; {{getSelectedProductSum() | price}})</td>
+        </tr>
+        <tr>
+          <td>{{'components.tab-order.ordered-everything' | translate}}:</td>
+          <td>{{getAllProductsCount()}}</td>
+          <td>(&Sigma; {{getAllProductsSum() | price}})</td>
+        </tr>
+      </table>
 
       <hr>
 
-      <h3>Last Orders</h3>
+      <h3>{{'components.tab-order.last-orders' | translate}}</h3>
 
       <div class="alert alert-danger" *ngIf="loadingOrdersError">
         {{loadingOrdersError}}

@@ -4,7 +4,6 @@ import { finalize } from 'rxjs/operators';
 import { Product } from '../../services/model/Product';
 import { ActivatedRoute } from '@angular/router';
 import { Order } from '../../services/model/Order';
-import { UserSettingsService } from '../../services/user-settings.service';
 
 @Component({
   selector: 'app-tab-order',
@@ -31,9 +30,7 @@ export class TabOrderComponent implements OnInit {
   productIdToName = {};
   dateFormat = '';
 
-  constructor(private service: BackendService, private activeRoute: ActivatedRoute, private userSettings: UserSettingsService) {
-    this.dateFormat = userSettings.dateFormat;
-    console.log('date format', this.dateFormat);
+  constructor(private service: BackendService, private activeRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -64,6 +61,40 @@ export class TabOrderComponent implements OnInit {
       });
   }
 
+  getSelectedProductCount() {
+    return this.orders
+      .filter((order) => {
+        return order.productId === this.selectedProduct.id;
+      })
+      .reduce((prev, cur) => {
+        return prev + cur.quantity;
+      }, 0);
+  }
+
+  getSelectedProductSum() {
+    return this.orders
+      .filter((order) => {
+        return order.productId === this.selectedProduct.id;
+      })
+      .reduce((prev, cur) => {
+        return prev + (cur.quantity * cur.productPrice);
+      }, 0);
+  }
+
+  getAllProductsCount() {
+    return this.orders
+      .reduce((prev, cur) => {
+        return prev + cur.quantity;
+      }, 0);
+  }
+
+  getAllProductsSum() {
+    return this.orders
+      .reduce((prev, cur) => {
+        return prev + (cur.quantity * cur.productPrice);
+      }, 0);
+  }
+
   private loadProducts() {
     this.productsLoading = true;
 
@@ -75,7 +106,7 @@ export class TabOrderComponent implements OnInit {
         this.products = products;
 
         if (products.length > 0) {
-          this.selectedProduct = products[0];
+          this.selectProduct(products[0]);
         } else {
           this.noProductsFound = true;
         }

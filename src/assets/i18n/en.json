@@ -9,6 +9,7 @@
   "components": {
     "tab-order": {
       "create-product": "Create Product",
+      "last-orders": "Last Orders",
       "no-products-found": "No products found.",
       "ordered-everything": "Ordered Everything",
       "ordered-product": "Ordered {{name}}"
