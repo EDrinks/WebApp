@@ -3,7 +3,7 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppConfigService } from './services/app-config.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { UserSettingsComponent } from './components/user-settings.component';
@@ -31,6 +31,7 @@ import { UserSettingsService } from './services/user-settings.service';
 import { LocaleDatePipe } from './pipes/locale-date.pipe';
 import { AuthService } from './services/auth.service';
 import { CallbackComponent } from './callback.component';
+import { AuthInterceptor } from './misc/auth-interceptor';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -90,7 +91,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     },
     BackendService,
     UserSettingsService,
-    AuthService
+    AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
