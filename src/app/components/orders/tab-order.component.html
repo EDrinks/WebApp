@@ -62,7 +62,7 @@
       <ul>
         <li *ngFor="let order of orders">
           {{order.quantity}}x{{productIdToName[order.productId]}}
-          {{order.dateTime | date:dateFormat}}
+          {{order.dateTime | localeDate}}
           (&Sigma; {{order.quantity * order.productPrice | price}})
         </li>
       </ul>

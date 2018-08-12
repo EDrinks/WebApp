@@ -28,6 +28,7 @@ import { TabDeleteModalComponent } from './components/tabs/tab-delete-modal.comp
 import { TabOrderComponent } from './components/orders/tab-order.component';
 import { LoadingComponent } from './components/shared/loading.component';
 import { UserSettingsService } from './services/user-settings.service';
+import { LocaleDatePipe } from './pipes/locale-date.pipe';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -52,7 +53,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     TabDeleteModalComponent,
     TabOrderComponent,
     LoadingComponent,
-    PricePipe
+    PricePipe,
+    LocaleDatePipe
   ],
   entryComponents: [
     ProductDeleteModalComponent,
