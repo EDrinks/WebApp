@@ -29,6 +29,8 @@
     "price-restriction": "Must be above 0"
   },
   "products": "Products",
+  "settlements": "Settlements",
+  "statistics": "Statistics",
   "tab": {
     "confirm-delete-tab": "Confirm tab deletion",
     "name": "Name"
