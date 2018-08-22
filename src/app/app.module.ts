@@ -33,6 +33,7 @@ import { AuthService } from './services/auth.service';
 import { CallbackComponent } from './callback.component';
 import { AuthInterceptor } from './misc/auth-interceptor';
 import { SettlementsComponent } from './components/settlements/settlements.component';
+import { ActiveSettlementComponent } from './components/settlements/active-settlement.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -52,6 +53,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProductMaskComponent,
     ProductDeleteModalComponent,
     SettlementsComponent,
+    ActiveSettlementComponent,
     TabsComponent,
     TabListComponent,
     TabMaskComponent,

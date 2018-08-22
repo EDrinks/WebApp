@@ -14,6 +14,7 @@ import { TabMaskComponent } from './components/tabs/tab-mask.component';
 import { TabOrderComponent } from './components/orders/tab-order.component';
 import { CallbackComponent } from './callback.component';
 import { SettlementsComponent } from './components/settlements/settlements.component';
+import { ActiveSettlementComponent } from './components/settlements/active-settlement.component';
 
 const appRoutes: Routes = [
   {path: '', component: StartComponent},
@@ -56,7 +57,14 @@ const appRoutes: Routes = [
     ]
   },
   {
-    path: 'settlements', component: SettlementsComponent
+    path: 'settlements', component: SettlementsComponent, children: [
+      {
+        path: '', redirectTo: 'active', pathMatch: 'full',
+      },
+      {
+        path: 'active', component: ActiveSettlementComponent
+      }
+    ]
   }
 ];
 
