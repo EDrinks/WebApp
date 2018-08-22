@@ -32,6 +32,7 @@ import { LocaleDatePipe } from './pipes/locale-date.pipe';
 import { AuthService } from './services/auth.service';
 import { CallbackComponent } from './callback.component';
 import { AuthInterceptor } from './misc/auth-interceptor';
+import { SettlementsComponent } from './components/settlements/settlements.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -50,6 +51,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProductListComponent,
     ProductMaskComponent,
     ProductDeleteModalComponent,
+    SettlementsComponent,
     TabsComponent,
     TabListComponent,
     TabMaskComponent,

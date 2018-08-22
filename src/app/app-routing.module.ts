@@ -13,6 +13,7 @@ import { TabListComponent } from './components/tabs/tab-list.component';
 import { TabMaskComponent } from './components/tabs/tab-mask.component';
 import { TabOrderComponent } from './components/orders/tab-order.component';
 import { CallbackComponent } from './callback.component';
+import { SettlementsComponent } from './components/settlements/settlements.component';
 
 const appRoutes: Routes = [
   {path: '', component: StartComponent},
@@ -53,6 +54,9 @@ const appRoutes: Routes = [
         path: 'edit/:id', component: TabMaskComponent
       }
     ]
+  },
+  {
+    path: 'settlements', component: SettlementsComponent
   }
 ];
 
