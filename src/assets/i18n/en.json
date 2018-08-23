@@ -14,6 +14,11 @@
       "no-products-found": "No products found.",
       "ordered-everything": "Ordered Everything",
       "ordered-product": "Ordered {{name}}"
+    },
+    "active-settlement": {
+      "settle-selected-tabs": "Settle selected tabs",
+      "sum": "Sum",
+      "tab": "Tab"
     }
   },
   "errors": {

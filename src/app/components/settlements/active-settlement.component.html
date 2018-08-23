@@ -7,7 +7,7 @@
 <div *ngIf="!loading && !loadingError">
   <div class="form-group">
     <button type="button" class="btn btn-primary" [disabled]="true">
-      Settle selected tabs
+      {{'components.active-settlement.settle-selected-tabs' | translate}}
     </button>
   </div>
 
@@ -16,8 +16,8 @@
     <tr>
       <th><input type="checkbox" [indeterminate]="someSelected() && !allSelected()"
                  [checked]="allSelected()" [(ngModel)]="allChecked" (ngModelChange)="updateAllSelected($event)"></th>
-      <th>Tab</th>
-      <th>Sum ({{sumOfSelectedOutstandings() | price}})</th>
+      <th>{{'components.active-settlement.tab' | translate}}</th>
+      <th>{{'components.active-settlement.sum' | translate}} ({{sumOfSelectedOutstandings() | price}})</th>
     </tr>
     </thead>
     <tbody>
