@@ -1,32 +1,31 @@
-<div class="form-group">
-  <button type="button" class="btn btn-primary" [disabled]="true">
-    Settle selected tabs
-  </button>
+<app-loading *ngIf="loading"></app-loading>
+
+<div class="alert alert-danger" *ngIf="!loading && loadingError">
+  {{loadingError}}
 </div>
 
-<table class="table">
-  <thead>
-  <tr>
-    <th><input type="checkbox"></th>
-    <th>Tab</th>
-    <th>Sum (90.00 EUR)</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td><input type="checkbox"></td>
-    <td>Bar, Foo</td>
-    <td>30.00 EUR</td>
-  </tr>
-  <tr>
-    <td><input type="checkbox"></td>
-    <td>Bar, Foo</td>
-    <td>30.00 EUR</td>
-  </tr>
-  <tr>
-    <td><input type="checkbox"></td>
-    <td>Bar, Foo</td>
-    <td>30.00 EUR</td>
-  </tr>
-  </tbody>
-</table>
+<div *ngIf="!loading && !loadingError">
+  <div class="form-group">
+    <button type="button" class="btn btn-primary" [disabled]="true">
+      Settle selected tabs
+    </button>
+  </div>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th><input type="checkbox" [indeterminate]="someSelected() && !allSelected()"
+                 [checked]="allSelected()" [(ngModel)]="allChecked" (ngModelChange)="updateAllSelected($event)"></th>
+      <th>Tab</th>
+      <th>Sum ({{sumOfSelectedOutstandings() | price}})</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let tab of tabs">
+      <td><input type="checkbox" [(ngModel)]="tab.selected"></td>
+      <td>{{tab.name}}</td>
+      <td>{{tab.outstanding | price}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

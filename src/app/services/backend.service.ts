@@ -60,6 +60,10 @@ export class BackendService {
     return this.getReq<Order[]>(this.baseUrl + `/api/Tabs/${tabId}/Orders`);
   }
 
+  getCurrentOrders(): Observable<Order[]> {
+    return this.getReq<Order[]>(this.baseUrl + `/api/Orders`);
+  }
+
   createOrder(tabId: string, productId: string, quantity: number) {
     return this.postReq(this.baseUrl + `/api/Tabs/${tabId}/Orders`, {
       tabId,
