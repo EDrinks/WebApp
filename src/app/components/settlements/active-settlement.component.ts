@@ -19,6 +19,8 @@ export class ActiveSettlementComponent implements OnInit {
   confirmSettlement = false;
   filteredTabs: TabViewModel[] = [];
   numOfSelectedTabs = 0;
+  submitting = false;
+  submitError = '';
 
   constructor(private service: BackendService) {
   }
@@ -57,11 +59,28 @@ export class ActiveSettlementComponent implements OnInit {
 
   confirmSettleTabs() {
     this.confirmSettlement = true;
+    this.submitError = '';
 
     this.filteredTabs = this.tabs.filter((tab) => {
       return tab.selected;
     });
     this.numOfSelectedTabs = this.filteredTabs.length;
+  }
+
+  settleTabs() {
+    this.submitting = true;
+    this.submitError = '';
+
+    this.service.settleTabs(this.filteredTabs.map((tab: TabViewModel) => {
+      return tab.tabId;
+    })).pipe(finalize(() => {
+      this.submitting = false;
+    })).subscribe(() => {
+      this.confirmSettlement = false;
+      this.loadEntities();
+    }, (error) => {
+      this.submitError = error;
+    });
   }
 
   cancelConfirmation() {

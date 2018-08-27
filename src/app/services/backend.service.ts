@@ -72,6 +72,10 @@ export class BackendService {
     });
   }
 
+  settleTabs(tabIds: string[]) {
+    return this.postReq(this.baseUrl + `/api/Settlements`, tabIds);
+  }
+
   private getReq<TResult>(url: string) {
     return this.http.get<TResult>(url)
       .pipe(catchError((error) => {
