@@ -5,27 +5,58 @@
 </div>
 
 <div *ngIf="!loading && !loadingError">
-  <div class="form-group">
-    <button type="button" class="btn btn-primary" [disabled]="!someSelected()">
-      {{'components.active-settlement.settle-selected-tabs' | translate}}
-    </button>
+  <div *ngIf="!confirmSettlement">
+    <div class="form-group">
+      <button type="button" class="btn btn-primary" [disabled]="!someSelected()" (click)="confirmSettleTabs()">
+        {{'components.active-settlement.settle-selected-tabs' | translate}}
+      </button>
+    </div>
+
+    <table class="table">
+      <thead>
+      <tr>
+        <th><input type="checkbox" [indeterminate]="someSelected() && !allSelected()"
+                   [checked]="allSelected()" [(ngModel)]="allChecked" (ngModelChange)="updateAllSelected($event)"></th>
+        <th>{{'components.active-settlement.tab' | translate}}</th>
+        <th>{{'components.active-settlement.sum' | translate}} ({{sumOfSelectedOutstandings() | price}})</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let tab of tabs">
+        <td><input type="checkbox" [(ngModel)]="tab.selected"></td>
+        <td>{{tab.name}}</td>
+        <td>{{tab.outstanding | price}}</td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 
-  <table class="table">
-    <thead>
-    <tr>
-      <th><input type="checkbox" [indeterminate]="someSelected() && !allSelected()"
-                 [checked]="allSelected()" [(ngModel)]="allChecked" (ngModelChange)="updateAllSelected($event)"></th>
-      <th>{{'components.active-settlement.tab' | translate}}</th>
-      <th>{{'components.active-settlement.sum' | translate}} ({{sumOfSelectedOutstandings() | price}})</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let tab of tabs">
-      <td><input type="checkbox" [(ngModel)]="tab.selected"></td>
-      <td>{{tab.name}}</td>
-      <td>{{tab.outstanding | price}}</td>
-    </tr>
-    </tbody>
-  </table>
+  <div *ngIf="confirmSettlement">
+    <div class="form-group">
+      <button type="button" class="btn btn-primary mr-2">
+        <span [translate]="'components.active-settlement.settle-tabs'"
+              [translateParams]="{value: filteredTabs.length}"></span>
+        {{sumOfSelectedOutstandings() | price}}
+      </button>
+
+      <button type="button" class="btn btn-secondary" (click)="cancelConfirmation()">
+        {{'common.cancel' | translate}}
+      </button>
+    </div>
+
+    <table class="table">
+      <thead>
+      <tr>
+        <th>{{'components.active-settlement.tab' | translate}}</th>
+        <th>{{'components.active-settlement.sum' | translate}} ({{sumOfSelectedOutstandings() | price}})</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let tab of filteredTabs">
+        <td>{{tab.name}}</td>
+        <td>{{tab.outstanding | price}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

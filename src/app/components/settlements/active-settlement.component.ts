@@ -16,6 +16,10 @@ export class ActiveSettlementComponent implements OnInit {
   tabs: TabViewModel[] = [];
   allChecked = true;
 
+  confirmSettlement = false;
+  filteredTabs: TabViewModel[] = [];
+  numOfSelectedTabs = 0;
+
   constructor(private service: BackendService) {
   }
 
@@ -49,6 +53,19 @@ export class ActiveSettlementComponent implements OnInit {
       .reduce((prev: number, cur: TabViewModel) => {
         return prev + cur.outstanding;
       }, 0);
+  }
+
+  confirmSettleTabs() {
+    this.confirmSettlement = true;
+
+    this.filteredTabs = this.tabs.filter((tab) => {
+      return tab.selected;
+    });
+    this.numOfSelectedTabs = this.filteredTabs.length;
+  }
+
+  cancelConfirmation() {
+    this.confirmSettlement = false;
   }
 
   private loadEntities() {
