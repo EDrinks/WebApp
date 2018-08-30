@@ -15,6 +15,7 @@ import { TabOrderComponent } from './components/orders/tab-order.component';
 import { CallbackComponent } from './callback.component';
 import { SettlementsComponent } from './components/settlements/settlements.component';
 import { ActiveSettlementComponent } from './components/settlements/active-settlement.component';
+import { OldSettlementComponent } from './components/settlements/old-settlement.component';
 
 const appRoutes: Routes = [
   {path: '', component: StartComponent},
@@ -63,6 +64,9 @@ const appRoutes: Routes = [
       },
       {
         path: 'active', component: ActiveSettlementComponent
+      },
+      {
+        path: 'old/:settlementId', component: OldSettlementComponent
       }
     ]
   }

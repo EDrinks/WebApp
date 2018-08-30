@@ -4,6 +4,7 @@ import { finalize } from 'rxjs/operators';
 import { Order } from '../../services/model/Order';
 import { zip } from 'rxjs';
 import { Tab } from '../../services/model/Tab';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-active-settlement',
@@ -22,7 +23,7 @@ export class ActiveSettlementComponent implements OnInit {
   submitting = false;
   submitError = '';
 
-  constructor(private service: BackendService) {
+  constructor(private service: BackendService, private router: Router) {
   }
 
   ngOnInit() {
@@ -75,9 +76,8 @@ export class ActiveSettlementComponent implements OnInit {
       return tab.tabId;
     })).pipe(finalize(() => {
       this.submitting = false;
-    })).subscribe(() => {
-      this.confirmSettlement = false;
-      this.loadEntities();
+    })).subscribe((settlementId) => {
+      this.router.navigate(['settlements', 'old', settlementId]);
     }, (error) => {
       this.submitError = error;
     });
