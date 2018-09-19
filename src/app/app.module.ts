@@ -35,6 +35,7 @@ import { AuthInterceptor } from './misc/auth-interceptor';
 import { SettlementsComponent } from './components/settlements/settlements.component';
 import { ActiveSettlementComponent } from './components/settlements/active-settlement.component';
 import { OldSettlementComponent } from './components/settlements/old-settlement.component';
+import { AllSettlementsComponent } from './components/settlements/all-settlements.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -56,6 +57,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SettlementsComponent,
     ActiveSettlementComponent,
     OldSettlementComponent,
+    AllSettlementsComponent,
     TabsComponent,
     TabListComponent,
     TabMaskComponent,

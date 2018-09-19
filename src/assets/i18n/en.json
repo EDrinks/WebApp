@@ -8,18 +8,22 @@
     "save": "Save"
   },
   "components": {
+    "active-settlement": {
+      "settle-tabs": "Settle {{value}} tabs with sum of:",
+      "settle-selected-tabs": "Settle selected tabs",
+      "old-settlements": "Old Settlements",
+      "sum": "Sum",
+      "tab": "Tab"
+    },
+    "all-settlements": {
+      "active-settlement": "Active Settlement"
+    },
     "tab-order": {
       "create-product": "Create Product",
       "last-orders": "Last Orders",
       "no-products-found": "No products found.",
       "ordered-everything": "Ordered Everything",
       "ordered-product": "Ordered {{name}}"
-    },
-    "active-settlement": {
-      "settle-tabs": "Settle {{value}} tabs with sum of:",
-      "settle-selected-tabs": "Settle selected tabs",
-      "sum": "Sum",
-      "tab": "Tab"
     }
   },
   "errors": {

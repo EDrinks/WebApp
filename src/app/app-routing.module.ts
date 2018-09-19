@@ -16,6 +16,7 @@ import { CallbackComponent } from './callback.component';
 import { SettlementsComponent } from './components/settlements/settlements.component';
 import { ActiveSettlementComponent } from './components/settlements/active-settlement.component';
 import { OldSettlementComponent } from './components/settlements/old-settlement.component';
+import { AllSettlementsComponent } from './components/settlements/all-settlements.component';
 
 const appRoutes: Routes = [
   {path: '', component: StartComponent},
@@ -64,6 +65,9 @@ const appRoutes: Routes = [
       },
       {
         path: 'active', component: ActiveSettlementComponent
+      },
+      {
+        path: 'all', component: AllSettlementsComponent
       },
       {
         path: 'old/:settlementId', component: OldSettlementComponent

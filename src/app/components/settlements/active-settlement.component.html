@@ -5,6 +5,8 @@
 </div>
 
 <div *ngIf="!loading && !loadingError">
+  <a routerLink="/settlements/all" class="float-right">{{'components.active-settlement.old-settlements' | translate}}</a>
+
   <div *ngIf="!confirmSettlement">
     <div class="form-group">
       <button type="button" class="btn btn-primary" [disabled]="!someSelected()" (click)="confirmSettleTabs()">
