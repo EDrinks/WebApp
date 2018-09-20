@@ -3,8 +3,6 @@
     {{'components.all-settlements.active-settlement' | translate}}
   </a>
 
-  <app-loading *ngIf="loading"></app-loading>
-
   <div class="alert alert-danger" *ngIf="errorMessage">
     {{errorMessage}}
   </div>
@@ -21,8 +19,8 @@
       </thead>
       <tbody>
       <tr *ngFor="let settlement of settlements">
-        <td>{{settlement.dateTime}}</td>
-        <td>40.59 EUR</td>
+        <td>{{settlement.dateTime | localeDate}}</td>
+        <td>{{getSumOfSettlement(settlement) | price}}</td>
         <td>
           <a href="#">Details</a>
         </td>
@@ -32,6 +30,7 @@
 
     <div class="d-flex justify-content-center">
       <button type="button" class="btn btn-primary" [disabled]="loading" (click)="loadNextPage()">
+        <app-loading *ngIf="loading"></app-loading>
         Load more
       </button>
     </div>

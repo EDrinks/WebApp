@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { BackendService } from '../../services/backend.service';
-import { Settlement } from '../../services/model/Settlement';
+import { Settlement, TabToOrders } from '../../services/model/Settlement';
 import { finalize } from 'rxjs/operators';
+import { Order } from '../../services/model/Order';
 
 const dateFormat = 'YYYY-MM-DD';
 
@@ -54,5 +55,13 @@ export class AllSettlementsComponent implements OnInit {
   loadNextPage() {
     this.offset += 1;
     this.loadSettlements();
+  }
+
+  getSumOfSettlement(settlement: Settlement) {
+    return settlement.tabToOrders.reduce((sum: number, tabToOrders: TabToOrders) => {
+      return sum + tabToOrders.orders.reduce((orderSum: number, order: Order) => {
+        return orderSum + (order.quantity * order.productPrice);
+      }, 0);
+    }, 0);
   }
 }
