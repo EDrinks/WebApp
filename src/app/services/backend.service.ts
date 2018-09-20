@@ -7,6 +7,7 @@ import { Product } from './model/Product';
 import { Router } from '@angular/router';
 import { Tab } from './model/Tab';
 import { Order } from './model/Order';
+import { Settlement } from './model/Settlement';
 
 @Injectable()
 export class BackendService {
@@ -74,6 +75,10 @@ export class BackendService {
 
   settleTabs(tabIds: string[]) {
     return this.postReq(this.baseUrl + `/api/Settlements`, tabIds);
+  }
+
+  getSettlements(offset: number): Observable<Settlement[]> {
+    return this.getReq<Settlement[]>(this.baseUrl + `/api/Settlements?offset=${offset}`);
   }
 
   private getReq<TResult>(url: string) {

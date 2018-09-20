@@ -3,50 +3,39 @@
     {{'components.all-settlements.active-settlement' | translate}}
   </a>
 
-  <div class="form-inline">
-    <div class="form-group">
-      <label for="settlementsFrom" class="mr-2">From</label>
-      <input type="date" class="form-control mr-2" id="settlementsFrom">
-    </div>
+  <app-loading *ngIf="loading"></app-loading>
 
-    <div class="form-group">
-      <label for="settlementsTo" class="mr-2">To</label>
-      <input type="date" class="form-control mr-2" id="settlementsTo">
-    </div>
+  <div class="alert alert-danger" *ngIf="errorMessage">
+    {{errorMessage}}
   </div>
 
-  <hr>
+  <div *ngIf="!errorMessage">
 
-  <ng-container *ngTemplateOutlet="paginationTemplate"></ng-container>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Date</th>
+        <th>Sum</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let settlement of settlements">
+        <td>{{settlement.dateTime}}</td>
+        <td>40.59 EUR</td>
+        <td>
+          <a href="#">Details</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
 
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Date</th>
-      <th>Sum</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>2018-08-30 16:00</td>
-      <td>40.59 EUR</td>
-      <td>
-        <a href="#">Details</a>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+    <div class="d-flex justify-content-center">
+      <button type="button" class="btn btn-primary" [disabled]="loading" (click)="loadNextPage()">
+        Load more
+      </button>
+    </div>
 
-  <ng-container *ngTemplateOutlet="paginationTemplate"></ng-container>
+  </div>
 </div>
 
-<ng-template #paginationTemplate>
-  <ul class="pagination justify-content-end">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item active"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-  </ul>
-</ng-template>
