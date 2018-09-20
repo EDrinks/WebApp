@@ -16,7 +16,11 @@
       "tab": "Tab"
     },
     "all-settlements": {
-      "active-settlement": "Active Settlement"
+      "active-settlement": "Active Settlement",
+      "date": "Date",
+      "details": "Details",
+      "load-more": "Load more",
+      "sum": "Sum"
     },
     "tab-order": {
       "create-product": "Create Product",

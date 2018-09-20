@@ -12,8 +12,8 @@
     <table class="table">
       <thead>
       <tr>
-        <th>Date</th>
-        <th>Sum</th>
+        <th>{{'components.all-settlements.date' | translate}}</th>
+        <th>{{'components.all-settlements.sum' | translate}}</th>
         <th></th>
       </tr>
       </thead>
@@ -22,7 +22,7 @@
         <td>{{settlement.dateTime | localeDate}}</td>
         <td>{{getSumOfSettlement(settlement) | price}}</td>
         <td>
-          <a href="#">Details</a>
+          <a [routerLink]="['/', 'settlements', 'old', settlement.id]">{{'components.all-settlements.details' | translate}}</a>
         </td>
       </tr>
       </tbody>
@@ -31,7 +31,7 @@
     <div class="d-flex justify-content-center">
       <button type="button" class="btn btn-primary" [disabled]="loading" (click)="loadNextPage()">
         <app-loading *ngIf="loading"></app-loading>
-        Load more
+        {{'components.all-settlements.load-more' | translate}}
       </button>
     </div>
 
