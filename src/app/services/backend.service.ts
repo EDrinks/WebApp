@@ -85,6 +85,18 @@ export class BackendService {
     return this.getReq<Settlement>(this.baseUrl + `/api/Settlements/${settlementId}`);
   }
 
+  getSettlementFile(settlementId: string, mimeType: string): Observable<Response> {
+    const options = {
+      headers: {'Accept': mimeType},
+      responseType: 'blob' as 'json'
+    };
+
+    return this.http.get<Response>(`${this.baseUrl}/api/Settlements/${settlementId}`, options)
+      .pipe(catchError((error) => {
+        return this.handleError(error);
+      }));
+  }
+
   private getReq<TResult>(url: string) {
     return this.http.get<TResult>(url)
       .pipe(catchError((error) => {
