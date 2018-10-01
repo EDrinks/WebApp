@@ -17,6 +17,7 @@ import { SettlementsComponent } from './components/settlements/settlements.compo
 import { ActiveSettlementComponent } from './components/settlements/active-settlement.component';
 import { OldSettlementComponent } from './components/settlements/old-settlement.component';
 import { AllSettlementsComponent } from './components/settlements/all-settlements.component';
+import { ImpressumComponent } from './components/impressum.component';
 
 const appRoutes: Routes = [
   {path: '', component: StartComponent},
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
   {path: 'tab/:id', component: TabOrderComponent},
   {path: 'user-settings', component: UserSettingsComponent},
   {path: 'contributions', component: ContributionsComponent},
+  {path: 'impressum', component: ImpressumComponent},
   {path: 'server-error', component: ServerErrorComponent},
   {path: 'not-found-error', component: NotFoundErrorComponent},
   {

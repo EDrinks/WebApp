@@ -36,6 +36,7 @@ import { SettlementsComponent } from './components/settlements/settlements.compo
 import { ActiveSettlementComponent } from './components/settlements/active-settlement.component';
 import { OldSettlementComponent } from './components/settlements/old-settlement.component';
 import { AllSettlementsComponent } from './components/settlements/all-settlements.component';
+import { ImpressumComponent } from './components/impressum.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -65,6 +66,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     TabOrderComponent,
     LoadingComponent,
     CallbackComponent,
+    ImpressumComponent,
     // pipes
     PricePipe,
     LocaleDatePipe
