@@ -81,6 +81,10 @@ export class BackendService {
     return this.getReq<Settlement[]>(this.baseUrl + `/api/Settlements?offset=${offset}`);
   }
 
+  getSettlement(settlementId: string): Observable<Settlement> {
+    return this.getReq<Settlement>(this.baseUrl + `/api/Settlements/${settlementId}`);
+  }
+
   private getReq<TResult>(url: string) {
     return this.http.get<TResult>(url)
       .pipe(catchError((error) => {

@@ -1,1 +1,40 @@
-old settlement
+<app-loading *ngIf="loading"></app-loading>
+
+<div class="alert alert-danger" *ngIf="errorMessage">
+  {{errorMessage}}
+</div>
+
+<div *ngIf="settlement">
+  <div class="d-flex justify-content-between">
+    <h2>{{settlement.dateTime | localeDate}}</h2>
+
+    <div>
+      <button type="button" class="btn btn-outline-primary mr-1">
+        <i class="fas fa-file-excel"></i>
+      </button>
+
+      <button type="button" class="btn btn-outline-primary">
+        <i class="fas fa-file-pdf"></i>
+      </button>
+    </div>
+  </div>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Tab</th>
+      <th>Sum</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let tabToOrders of settlement.tabToOrders">
+      <td>
+        {{tabToOrders.tab.name}}
+      </td>
+      <td>
+        {{getSumOfTab(tabToOrders) | price}}
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
