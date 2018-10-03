@@ -53,6 +53,8 @@
   "tabs": "Tabs",
   "title": "Hello World",
   "user-settings": {
-    "language": "Language"
+    "language": "Language",
+    "primary-product": "Primary Product",
+    "quick-select": "Enable Product quick select"
   }
 }

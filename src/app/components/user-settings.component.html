@@ -9,6 +9,22 @@
     </div>
 
     <div class="form-group">
+      <label>{{'user-settings.primary-product' | translate}}</label>
+      <select class="form-control" [(ngModel)]="primaryProductId" [disabled]="loadingProducts" name="primaryProduct">
+        <option [value]="null">-</option>
+        <option *ngFor="let product of products" [value]="product.id">{{product.name}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="quickSelectToggle" [disabled]="primaryProductId === null"
+               [(ngModel)]="enableQuickSelect" name="quickSelectToggle">
+        <label for="quickSelectToggle" class="form-check-label">{{'user-settings.quick-select' | translate}}</label>
+      </div>
+    </div>
+
+    <div class="form-group">
       <button type="submit" class="btn btn-primary">
         <i class="fas fa-save" aria-hidden="true"></i>
         {{'common.save' | translate}}
