@@ -2,6 +2,10 @@
   &__tab {
     width: 250px;
     margin: 5px;
+  }
+
+  &__tabButton {
+    width: 100%;
     text-overflow: ellipsis;
     overflow: hidden;
   }

@@ -7,8 +7,18 @@
     {{tabsError}}
   </div>
 
-  <button type="button" class="btn btn-outline-primary cmp-Start__tab"
-          *ngFor="let tab of tabs" (click)="selectTab(tab)">
-    {{tab.name}}
-  </button>
+  <div class="alert alert-danger" *ngIf="orderError">
+    {{orderError}}
+  </div>
+
+  <div class="btn-group cmp-Start__tab" *ngFor="let tab of tabs">
+    <button type="button" class="btn btn-outline-primary cmp-Start__tabButton" (click)="selectTab(tab)">
+      {{tab.name}}
+    </button>
+
+    <button type="button" class="btn btn-outline-primary" *ngIf="quickSelectProduct" (click)="quickOrder(tab)"
+            [disabled]="tabOrdersInProgress[tab.id]">
+      +1
+    </button>
+  </div>
 </div>
