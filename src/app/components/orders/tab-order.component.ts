@@ -4,6 +4,7 @@ import { finalize } from 'rxjs/operators';
 import { Product } from '../../services/model/Product';
 import { ActivatedRoute } from '@angular/router';
 import { Order } from '../../services/model/Order';
+import { Tab } from '../../services/model/Tab';
 
 @Component({
   selector: 'app-tab-order',
@@ -14,6 +15,7 @@ export class TabOrderComponent implements OnInit {
   noProductsFound = false;
 
   tabId: string;
+  tab: Tab;
   products: Product[] = [];
   selectedProduct: Product;
   productsLoading = false;
@@ -39,6 +41,7 @@ export class TabOrderComponent implements OnInit {
     this.activeRoute.params.subscribe((params) => {
       this.tabId = params['id'];
       this.loadOrders();
+      this.loadTab();
     });
   }
 
@@ -132,6 +135,13 @@ export class TabOrderComponent implements OnInit {
         this.orders = orders;
       }, (error) => {
         this.loadingOrdersError = error;
+      });
+  }
+
+  private loadTab() {
+    this.service.getTab(this.tabId)
+      .subscribe((tab: Tab) => {
+        this.tab = tab;
       });
   }
 }
