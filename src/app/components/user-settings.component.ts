@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DATE_FORMAT, LANGUAGE } from '../constants';
+import { DATE_FORMAT, LANGUAGE, PRIMARY_PRODUCT, QUICK_SELECT } from '../constants';
 import { Product } from '../services/model/Product';
 import { BackendService } from '../services/backend.service';
 import { finalize } from 'rxjs/operators';
@@ -48,11 +48,16 @@ export class UserSettingsComponent implements OnInit {
     if (!this.language) {
       this.language = this.languages[0];
     }
+
+    this.primaryProductId = localStorage.getItem(PRIMARY_PRODUCT);
+    this.enableQuickSelect = localStorage.getItem(QUICK_SELECT) === '1';
   }
 
   saveSettings() {
     localStorage.setItem(LANGUAGE, this.language.key);
     localStorage.setItem(DATE_FORMAT, this.language.dateFormat);
+    localStorage.setItem(PRIMARY_PRODUCT, this.primaryProductId);
+    localStorage.setItem(QUICK_SELECT, this.enableQuickSelect ? '1' : '0');
 
     location.reload();
   }
