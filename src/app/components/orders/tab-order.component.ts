@@ -24,6 +24,9 @@ export class TabOrderComponent implements OnInit {
   loadingOrders = false;
   loadingOrdersError = '';
 
+  deletingOrder = false;
+  deletingOrderError = '';
+
   orders: Order[] = [];
   creatingOrder = false;
   creatingOrderError = '';
@@ -96,6 +99,24 @@ export class TabOrderComponent implements OnInit {
       .reduce((prev, cur) => {
         return prev + (cur.quantity * cur.productPrice);
       }, 0);
+  }
+
+  undoOrder() {
+    if (this.orders.length > 0) {
+      const orderId = this.orders[0].id;
+
+      this.deletingOrder = true;
+      this.deletingOrderError = '';
+      this.service.deleteOrder(this.tabId, orderId)
+        .pipe(finalize(() => {
+          this.deletingOrder = false;
+        }))
+        .subscribe(() => {
+          this.loadOrders();
+        }, (error) => {
+          this.deletingOrderError = error;
+        });
+    }
   }
 
   private loadProducts() {

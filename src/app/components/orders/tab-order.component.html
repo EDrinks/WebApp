@@ -64,7 +64,16 @@
 
       <hr>
 
-      <h3>{{'components.tab-order.last-orders' | translate}}</h3>
+      <h3>
+        {{'components.tab-order.last-orders' | translate}}
+        <button type="button" class="btn btn-danger ml-2" (click)="undoOrder()"
+                [disabled]="orders.length === 0 || deletingOrder">
+          <app-loading *ngIf="deletingOrder"></app-loading>
+          {{'components.tab-order.undo-order' | translate}}
+        </button>
+
+        <span class="ml-2 text-danger" *ngIf="deletingOrderError">{{deletingOrderError}}</span>
+      </h3>
 
       <div class="alert alert-danger" *ngIf="loadingOrdersError">
         {{loadingOrdersError}}

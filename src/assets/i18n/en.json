@@ -27,7 +27,8 @@
       "last-orders": "Last Orders",
       "no-products-found": "No products found.",
       "ordered-everything": "Ordered Everything",
-      "ordered-product": "Ordered {{name}}"
+      "ordered-product": "Ordered {{name}}",
+      "undo-order": "Undo Order"
     }
   },
   "errors": {
