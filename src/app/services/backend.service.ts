@@ -77,12 +77,16 @@ export class BackendService {
     return this.postReq(this.baseUrl + `/api/Settlements`, tabIds);
   }
 
-  getSettlements(offset: number): Observable<Settlement[]> {
-    return this.getReq<Settlement[]>(this.baseUrl + `/api/Settlements?offset=${offset}`);
+  getActiveSettlement(): Observable<Settlement> {
+    return this.getReq<Settlement>(this.baseUrl + '/api/Settlements/current');
   }
 
   getSettlement(settlementId: string): Observable<Settlement> {
     return this.getReq<Settlement>(this.baseUrl + `/api/Settlements/${settlementId}`);
+  }
+
+  getSettlements(offset: number): Observable<Settlement[]> {
+    return this.getReq<Settlement[]>(this.baseUrl + `/api/Settlements?offset=${offset}`);
   }
 
   getSettlementFile(settlementId: string, mimeType: string): Observable<Response> {

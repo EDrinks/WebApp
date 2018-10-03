@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../../services/backend.service';
 import { finalize } from 'rxjs/operators';
 import { Order } from '../../services/model/Order';
-import { zip } from 'rxjs';
-import { Tab } from '../../services/model/Tab';
 import { Router } from '@angular/router';
+import { Settlement, TabToOrders } from '../../services/model/Settlement';
 
 @Component({
   selector: 'app-active-settlement',
@@ -91,49 +90,24 @@ export class ActiveSettlementComponent implements OnInit {
     this.loading = true;
     this.loadingError = '';
 
-    const ordersReq = this.service.getCurrentOrders();
-    const tabsReq = this.service.getTabs();
-
-    zip(ordersReq, tabsReq)
+    this.service.getActiveSettlement()
       .pipe(finalize(() => {
         this.loading = false;
       }))
-      .subscribe((entities) => {
-        const orders = entities[0];
-        const tabs = entities[1];
-        this.applyToViewModel(orders, tabs);
+      .subscribe((settlement: Settlement) => {
+        settlement.tabToOrders.forEach((tabToOrders: TabToOrders) => {
+          this.tabs.push({
+            tabId: tabToOrders.tab.id,
+            name: tabToOrders.tab.name,
+            selected: true,
+            outstanding: tabToOrders.orders.reduce((sum: number, order: Order) => {
+              return sum + (order.quantity * order.productPrice);
+            }, 0)
+          });
+        });
       }, (error) => {
         this.loadingError = error;
       });
-  }
-
-  private applyToViewModel(orders: Order[], tabs: Tab[]) {
-    const tabIdToViewModel = tabs.reduce((prev, cur) => {
-      const viewModel = new TabViewModel();
-      viewModel.tabId = cur.id;
-      viewModel.name = cur.name;
-      viewModel.selected = true;
-
-      prev[cur.id] = viewModel;
-
-      return prev;
-    }, {});
-
-    orders.forEach((order: Order) => {
-      tabIdToViewModel[order.tabId].outstanding += order.quantity * order.productPrice;
-    });
-
-    this.tabs = Object.keys(tabIdToViewModel).map((tabId: string) => {
-      return tabIdToViewModel[tabId];
-    }).sort((a: TabViewModel, b: TabViewModel) => {
-      if (a.name < b.name) {
-        return -1;
-      }
-
-      return 1;
-    }).filter((tab: TabViewModel) => {
-      return tab.outstanding > 0;
-    });
   }
 }
 
@@ -143,3 +117,4 @@ class TabViewModel {
   selected: boolean;
   outstanding = 0;
 }
+
