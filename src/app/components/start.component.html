@@ -11,14 +11,33 @@
     {{orderError}}
   </div>
 
-  <div class="btn-group cmp-Start__tab" *ngFor="let tab of tabs">
-    <button type="button" class="btn btn-outline-primary cmp-Start__tabButton" (click)="selectTab(tab)">
-      {{tab.name}}
-    </button>
+  <div class="row">
+    <div class="col-10">
+      <div class="btn-group cmp-Start__tab" *ngFor="let tab of tabs">
+        <button type="button" class="btn btn-outline-primary cmp-Start__tabButton" (click)="selectTab(tab)">
+          {{tab.name}}
+        </button>
 
-    <button type="button" class="btn btn-outline-primary" *ngIf="quickSelectProduct" (click)="quickOrder(tab)"
-            [disabled]="tabOrdersInProgress[tab.id]">
-      +1
-    </button>
+        <button type="button" class="btn btn-outline-primary" *ngIf="quickSelectProduct" (click)="quickOrder(tab)"
+                [disabled]="tabOrdersInProgress[tab.id]">
+          +1
+        </button>
+      </div>
+    </div>
+    <div class="col-2">
+      <button type="button" class="btn btn-danger" [disabled]="lastOrders.length === 0 || deletingOrder"
+              (click)="undoLastOrder()">
+        <app-loading *ngIf="deletingOrder"></app-loading>
+        {{'components.tab-order.undo-order' | translate}}
+      </button>
+
+      <div class="alert alert-danger" *ngIf="deletingOrderError">
+        {{deletingOrderError}}
+      </div>
+
+      <ul>
+        <li *ngFor="let order of lastOrders">1x {{order.tabName}}</li>
+      </ul>
+    </div>
   </div>
 </div>

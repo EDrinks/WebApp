@@ -19,6 +19,10 @@ export class StartComponent implements OnInit {
   tabOrdersInProgress = {};
   orderError = '';
 
+  lastOrders: LastOrder[] = [];
+  deletingOrder = false;
+  deletingOrderError = '';
+
   constructor(private service: BackendService, private router: Router) {
   }
 
@@ -43,11 +47,34 @@ export class StartComponent implements OnInit {
         .pipe(finalize(() => {
           this.tabOrdersInProgress[tab.id] = false;
         }))
-        .subscribe(() => {
-
+        .subscribe((orderId: string) => {
+          this.lastOrders.splice(0, 0, {
+            tabId: tab.id,
+            tabName: tab.name,
+            orderId: orderId
+          });
         }, (error) => {
           this.orderError = error;
         });
+    }
+  }
+
+  undoLastOrder() {
+    if (this.lastOrders.length > 0) {
+      const lastOrder = this.lastOrders[0];
+
+      this.deletingOrder = true;
+      this.deletingOrderError = '';
+      this.service.deleteOrder(lastOrder.tabId, lastOrder.orderId)
+        .pipe(finalize(() => {
+          this.deletingOrder = false;
+        }))
+        .subscribe(() => {
+          this.lastOrders.splice(0, 1);
+        }, (error) => {
+          this.deletingOrderError = error;
+        });
+
     }
   }
 
@@ -65,4 +92,10 @@ export class StartComponent implements OnInit {
         this.tabsError = error;
       });
   }
+}
+
+class LastOrder {
+  tabId: string;
+  tabName: string;
+  orderId: string;
 }
