@@ -1,5 +1,5 @@
 <div class="cmp-App__content">
-  <div *ngIf="auth.isAuthenticated()" class="cmp-App__contentMain">
+  <div class="cmp-App__contentMain">
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom: 10px;">
       <a class="navbar-brand" routerLink="/">E-Drinks</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -7,7 +7,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="auth.isAuthenticated()">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" routerLink="/products">{{'products' | translate}}</a>
@@ -38,11 +38,6 @@
     <router-outlet></router-outlet>
 
   </div>
-
-  <div *ngIf="!auth.isAuthenticated()" class="container mt-5 cmp-App__contentMain">
-    <button type="button" class="btn btn-lg btn-primary" (click)="auth.login()">{{'common.login' | translate}}</button>
-  </div>
-
 
   <footer class="cmp-App__footer">
     <div class="container">

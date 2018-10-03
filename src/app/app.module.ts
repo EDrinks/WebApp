@@ -37,6 +37,8 @@ import { ActiveSettlementComponent } from './components/settlements/active-settl
 import { OldSettlementComponent } from './components/settlements/old-settlement.component';
 import { AllSettlementsComponent } from './components/settlements/all-settlements.component';
 import { ImpressumComponent } from './components/impressum.component';
+import { AuthGuardService } from './services/auth-guard.service';
+import { LoginComponent } from './components/login.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -67,6 +69,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoadingComponent,
     CallbackComponent,
     ImpressumComponent,
+    LoginComponent,
     // pipes
     PricePipe,
     LocaleDatePipe
@@ -102,6 +105,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BackendService,
     UserSettingsService,
     AuthService,
+    AuthGuardService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

@@ -18,12 +18,15 @@ import { ActiveSettlementComponent } from './components/settlements/active-settl
 import { OldSettlementComponent } from './components/settlements/old-settlement.component';
 import { AllSettlementsComponent } from './components/settlements/all-settlements.component';
 import { ImpressumComponent } from './components/impressum.component';
+import { LoginComponent } from './components/login.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const appRoutes: Routes = [
-  {path: '', component: StartComponent},
+  {path: '', component: StartComponent, canActivate: [AuthGuardService]},
+  {path: 'login', component: LoginComponent},
   {path: 'callback', component: CallbackComponent},
-  {path: 'tab/:id', component: TabOrderComponent},
-  {path: 'user-settings', component: UserSettingsComponent},
+  {path: 'tab/:id', component: TabOrderComponent, canActivate: [AuthGuardService]},
+  {path: 'user-settings', component: UserSettingsComponent, canActivate: [AuthGuardService]},
   {path: 'contributions', component: ContributionsComponent},
   {path: 'impressum', component: ImpressumComponent},
   {path: 'server-error', component: ServerErrorComponent},
@@ -42,7 +45,7 @@ const appRoutes: Routes = [
       {
         path: 'edit/:id', component: ProductMaskComponent
       }
-    ]
+    ], canActivate: [AuthGuardService]
   },
   {
     path: 'tabs', component: TabsComponent, children: [
@@ -58,7 +61,7 @@ const appRoutes: Routes = [
       {
         path: 'edit/:id', component: TabMaskComponent
       }
-    ]
+    ], canActivate: [AuthGuardService]
   },
   {
     path: 'settlements', component: SettlementsComponent, children: [
@@ -74,7 +77,7 @@ const appRoutes: Routes = [
       {
         path: 'old/:settlementId', component: OldSettlementComponent
       }
-    ]
+    ], canActivate: [AuthGuardService]
   }
 ];
 
