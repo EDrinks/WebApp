@@ -39,6 +39,7 @@ import { AllSettlementsComponent } from './components/settlements/all-settlement
 import { ImpressumComponent } from './components/impressum.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { LoginComponent } from './components/login.component';
+import { StatisticsComponent } from './components/statistics/statistics.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -70,6 +71,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CallbackComponent,
     ImpressumComponent,
     LoginComponent,
+    StatisticsComponent,
     // pipes
     PricePipe,
     LocaleDatePipe

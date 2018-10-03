@@ -20,6 +20,7 @@ import { AllSettlementsComponent } from './components/settlements/all-settlement
 import { ImpressumComponent } from './components/impressum.component';
 import { LoginComponent } from './components/login.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { StatisticsComponent } from './components/statistics/statistics.component';
 
 const appRoutes: Routes = [
   {path: '', component: StartComponent, canActivate: [AuthGuardService]},
@@ -78,6 +79,9 @@ const appRoutes: Routes = [
         path: 'old/:settlementId', component: OldSettlementComponent
       }
     ], canActivate: [AuthGuardService]
+  },
+  {
+    path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuardService]
   }
 ];
 
