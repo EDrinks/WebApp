@@ -11,6 +11,10 @@
     {{orderError}}
   </div>
 
+  <div class="alert alert-danger" *ngIf="productsError">
+    {{productsError}}
+  </div>
+
   <div class="row">
     <div class="col-10">
       <div class="btn-group cmp-Start__tab" *ngFor="let tab of tabs">
@@ -36,7 +40,7 @@
       </div>
 
       <ul>
-        <li *ngFor="let order of lastOrders">1x {{order.tabName}}</li>
+        <li *ngFor="let order of lastOrders">1x{{order.productName}} - {{order.tabName}}</li>
       </ul>
     </div>
   </div>

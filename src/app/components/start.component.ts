@@ -4,6 +4,7 @@ import { Tab } from '../services/model/Tab';
 import { finalize } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { PRIMARY_PRODUCT, QUICK_SELECT } from '../constants';
+import { Product } from '../services/model/Product';
 
 @Component({
   selector: 'app-start',
@@ -12,12 +13,14 @@ import { PRIMARY_PRODUCT, QUICK_SELECT } from '../constants';
 })
 export class StartComponent implements OnInit {
   tabs: Tab[] = [];
+  products: Product[] = [];
   tabsLoading = false;
   tabsError = '';
 
   quickSelectProduct: string = null;
   tabOrdersInProgress = {};
   orderError = '';
+  productsError = '';
 
   lastOrders: LastOrder[] = [];
   deletingOrder = false;
@@ -28,6 +31,7 @@ export class StartComponent implements OnInit {
 
   ngOnInit() {
     this.loadTabs();
+    this.loadProducts();
 
     if (localStorage.getItem(QUICK_SELECT) === '1') {
       this.quickSelectProduct = localStorage.getItem(PRIMARY_PRODUCT);
@@ -48,10 +52,14 @@ export class StartComponent implements OnInit {
           this.tabOrdersInProgress[tab.id] = false;
         }))
         .subscribe((orderId: string) => {
+          const product = this.products.find((prod: Product) => {
+            return prod.id === this.quickSelectProduct;
+          });
           this.lastOrders.splice(0, 0, {
             tabId: tab.id,
             tabName: tab.name,
-            orderId: orderId
+            orderId: orderId,
+            productName: product ? product.name : ''
           });
         }, (error) => {
           this.orderError = error;
@@ -92,10 +100,22 @@ export class StartComponent implements OnInit {
         this.tabsError = error;
       });
   }
+
+  private loadProducts() {
+    this.productsError = '';
+
+    this.service.getProducts()
+      .subscribe((products: Product[]) => {
+        this.products = products;
+      }, (error) => {
+        this.productsError = error;
+      });
+  }
 }
 
 class LastOrder {
   tabId: string;
   tabName: string;
   orderId: string;
+  productName: string;
 }
