@@ -1,17 +1,17 @@
 <div class="container">
 
-  <h2>Top 10 Tabs</h2>
+  <h2>{{'components.statistics.top-ten-tabs' | translate}}</h2>
 
   <div class="form-inline">
     <div class="form-group">
       <div class="btn-group">
         <button type="button" class="btn btn-outline-primary" [ngClass]="{'active': topTenCurrent}"
                 (click)="setTopTenCurrent(true)">
-          Current
+          {{'components.statistics.current' | translate}}
         </button>
         <button type="button" class="btn btn-outline-primary" [ngClass]="{'active': !topTenCurrent}"
                 (click)="setTopTenCurrent(false)">
-          All
+          {{'components.statistics.all' | translate}}
         </button>
       </div>
     </div>
