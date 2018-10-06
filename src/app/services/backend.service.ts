@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { Tab } from './model/Tab';
 import { Order } from './model/Order';
 import { Settlement } from './model/Settlement';
+import { DataPoint } from './model/DataPoint';
 
 @Injectable()
 export class BackendService {
@@ -99,6 +100,10 @@ export class BackendService {
       .pipe(catchError((error) => {
         return this.handleError(error);
       }));
+  }
+
+  getTopTen(productId: string, current: boolean): Observable<DataPoint[]> {
+    return this.getReq(`${this.baseUrl}/api/Statistics/TopTen?productId=${productId}&current=${current}`);
   }
 
   private getReq<TResult>(url: string) {

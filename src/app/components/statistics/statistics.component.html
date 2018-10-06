@@ -16,9 +16,17 @@
         <option *ngFor="let product of products" [value]="product.id">{{product.name}}</option>
       </select>
     </div>
+
+    <div class="form-group ml-2">
+      <app-loading *ngIf="topTenLoading"></app-loading>
+    </div>
   </div>
 
   <div>
+    <div class="alert alert-danger" *ngIf="topTenError">
+      {{topTenError}}
+    </div>
+
     <canvas #myChart></canvas>
   </div>
 

@@ -4,8 +4,7 @@ import { BackendService } from '../../services/backend.service';
 import { finalize } from 'rxjs/operators';
 import { Product } from '../../services/model/Product';
 import { PRIMARY_PRODUCT } from '../../constants';
-import { Settlement, TabToOrders } from '../../services/model/Settlement';
-import { Order } from '../../services/model/Order';
+import { DataPoint } from '../../services/model/DataPoint';
 
 @Component({
   selector: 'app-statistics',
@@ -21,7 +20,8 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   loadingProductsError = '';
 
   topTenChart = null;
-  settlement: Settlement;
+  topTenLoading = false;
+  topTenError = '';
 
   constructor(private service: BackendService) {
   }
@@ -29,20 +29,34 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.selectedProductId = localStorage.getItem(PRIMARY_PRODUCT);
     this.loadProducts();
-    this.loadOrders();
+    this.updateTopTenChart();
 
     this.topTenChart = new chart.Chart(this.myChart.nativeElement, {
-      type: 'bar',
+      type: 'horizontalBar',
       data: {
         labels: [],
         datasets: [{
           label: 'Top 10',
-          backgroundColor: 'rgb(255, 99, 132)',
-          borderColor: 'rgb(255, 99, 132)',
+          backgroundColor: 'rgb(0, 123, 255)',
+          borderColor: 'rgb(0, 123, 255)',
           data: [],
         }]
       },
       options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              stepSize: 1
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              beginAtZero: true,
+              stepSize: 1
+            }
+          }]
+        }
       }
     });
   }
@@ -54,32 +68,26 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   }
 
   updateTopTenChart() {
-    let tabs = [];
-    this.settlement.tabToOrders.forEach((tabToOrders: TabToOrders) => {
-      const tabSum = tabToOrders.orders.filter((order: Order) => {
-        return order.productId === this.selectedProductId;
-      }).reduce((sum: number, order: Order) => {
-        return sum + order.quantity;
-      }, 0);
-      tabs.push([tabToOrders.tab.name, tabSum]);
-    });
+    if (this.selectedProductId) {
+      this.topTenLoading = true;
+      this.topTenError = '';
 
-    tabs = tabs.sort((a, b) => {
-      if (a[1] < b[1]) {
-        return 1;
-      }
-      return -1;
-    });
-
-    tabs = tabs.slice(0, 10);
-
-    this.topTenChart.data.labels = [];
-    this.topTenChart.data.datasets[0].data = [];
-    tabs.forEach((tab) => {
-      this.topTenChart.data.labels.push(tab[0]);
-      this.topTenChart.data.datasets[0].data.push(tab[1]);
-    });
-    this.topTenChart.update();
+      this.service.getTopTen(this.selectedProductId, true)
+        .pipe(finalize(() => {
+          this.topTenLoading = false;
+        }))
+        .subscribe((dataPoints: DataPoint[]) => {
+          this.topTenChart.data.labels = [];
+          this.topTenChart.data.datasets[0].data = [];
+          dataPoints.forEach((dataPoint: DataPoint) => {
+            this.topTenChart.data.labels.push(dataPoint.label);
+            this.topTenChart.data.datasets[0].data.push(dataPoint.value);
+          });
+          this.topTenChart.update();
+        }, (error) => {
+          this.topTenError = error;
+        });
+    }
   }
 
   private loadProducts() {
@@ -94,17 +102,6 @@ export class StatisticsComponent implements OnInit, OnDestroy {
         this.products = products;
       }, (error) => {
         this.loadingProductsError = error;
-      });
-  }
-
-  private loadOrders() {
-    this.service.getActiveSettlement()
-      .pipe(finalize(() => {
-      }))
-      .subscribe((settlement: Settlement) => {
-        this.settlement = settlement;
-        this.updateTopTenChart();
-      }, (error) => {
       });
   }
 }
