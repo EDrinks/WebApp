@@ -22,6 +22,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   topTenChart = null;
   topTenLoading = false;
   topTenError = '';
+  topTenCurrent = true;
 
   constructor(private service: BackendService) {
   }
@@ -72,7 +73,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
       this.topTenLoading = true;
       this.topTenError = '';
 
-      this.service.getTopTen(this.selectedProductId, true)
+      this.service.getTopTen(this.selectedProductId, this.topTenCurrent)
         .pipe(finalize(() => {
           this.topTenLoading = false;
         }))
@@ -88,6 +89,11 @@ export class StatisticsComponent implements OnInit, OnDestroy {
           this.topTenError = error;
         });
     }
+  }
+
+  setTopTenCurrent(current: boolean) {
+    this.topTenCurrent = current;
+    this.updateTopTenChart();
   }
 
   private loadProducts() {

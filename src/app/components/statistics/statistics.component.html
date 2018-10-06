@@ -5,8 +5,14 @@
   <div class="form-inline">
     <div class="form-group">
       <div class="btn-group">
-        <button type="button" class="btn btn-outline-primary active">Current</button>
-        <button type="button" class="btn btn-outline-primary">All</button>
+        <button type="button" class="btn btn-outline-primary" [ngClass]="{'active': topTenCurrent}"
+                (click)="setTopTenCurrent(true)">
+          Current
+        </button>
+        <button type="button" class="btn btn-outline-primary" [ngClass]="{'active': !topTenCurrent}"
+                (click)="setTopTenCurrent(false)">
+          All
+        </button>
       </div>
     </div>
 
