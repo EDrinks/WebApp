@@ -42,6 +42,7 @@ import { LoginComponent } from './components/login.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { TopTenStatisticComponent } from './components/statistics/top-ten-statistic.component';
 import { ConsumptionBetweenStatisticComponent } from './components/statistics/consumption-between-statistic.component';
+import { SpendingOrderComponent } from './components/orders/spending-order.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -69,6 +70,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     TabMaskComponent,
     TabDeleteModalComponent,
     TabOrderComponent,
+    SpendingOrderComponent,
     LoadingComponent,
     CallbackComponent,
     ImpressumComponent,

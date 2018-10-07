@@ -21,12 +21,14 @@ import { ImpressumComponent } from './components/impressum.component';
 import { LoginComponent } from './components/login.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { StatisticsComponent } from './components/statistics/statistics.component';
+import { SpendingOrderComponent } from './components/orders/spending-order.component';
 
 const appRoutes: Routes = [
   {path: '', component: StartComponent, canActivate: [AuthGuardService]},
   {path: 'login', component: LoginComponent},
   {path: 'callback', component: CallbackComponent},
   {path: 'tab/:id', component: TabOrderComponent, canActivate: [AuthGuardService]},
+  {path: 'spending/:id', component: SpendingOrderComponent, canActivate: [AuthGuardService]},
   {path: 'user-settings', component: UserSettingsComponent, canActivate: [AuthGuardService]},
   {path: 'contributions', component: ContributionsComponent},
   {path: 'impressum', component: ImpressumComponent},
