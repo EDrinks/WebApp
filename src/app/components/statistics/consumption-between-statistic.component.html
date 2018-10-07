@@ -1,20 +1,20 @@
-<h2>Consumption between</h2>
+<h2>{{'components.statistics.consumption-between' | translate}}</h2>
 
 <div class="form-inline">
   <div class="form-group">
-    <label for="startDate" class="mr-1">Start</label>
+    <label for="startDate" class="mr-1">{{'components.statistics.start' | translate}}</label>
     <input type="date" class="form-control mr-1" id="startDate" [(ngModel)]="startDate" name="startDate"
            (ngModelChange)="loadChartData()">
   </div>
 
   <div class="form-group">
-    <label for="endDate" class="mr-1">End</label>
+    <label for="endDate" class="mr-1">{{'components.statistics.end' | translate}}</label>
     <input type="date" class="form-control mr-1" id="endDate" [(ngModel)]="endDate" name="endDate"
            (ngModelChange)="loadChartData()">
   </div>
 
   <div class="form-group">
-    <label for="product" class="mr-1">Product</label>
+    <label for="product" class="mr-1">{{'components.statistics.product' | translate}}</label>
     <select class="form-control mr-1" id="product" name="product" [(ngModel)]="selectedProductId"
             (ngModelChange)="loadChartData()">
       <option [value]="null">-</option>

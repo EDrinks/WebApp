@@ -24,7 +24,11 @@
     },
     "statistics": {
       "all": "All",
+      "consumption-between": "Consumption Between",
       "current": "Current",
+      "end": "End",
+      "product": "Product",
+      "start": "Start",
       "top-ten-tabs": "Top 10 Tabs"
     },
     "tab-order": {
