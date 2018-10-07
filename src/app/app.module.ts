@@ -41,6 +41,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { LoginComponent } from './components/login.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { TopTenStatisticComponent } from './components/statistics/top-ten-statistic.component';
+import { ConsumptionBetweenStatisticComponent } from './components/statistics/consumption-between-statistic.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -74,6 +75,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoginComponent,
     StatisticsComponent,
     TopTenStatisticComponent,
+    ConsumptionBetweenStatisticComponent,
     // pipes
     PricePipe,
     LocaleDatePipe

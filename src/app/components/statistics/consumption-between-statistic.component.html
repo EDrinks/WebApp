@@ -1,0 +1,17 @@
+<h2>Consumption between</h2>
+
+<div class="form-inline">
+  <div class="form-group">
+    <label for="startDate" class="mr-1">Start</label>
+    <input type="date" class="form-control mr-1" id="startDate" [(ngModel)]="startDate" name="startDate">
+  </div>
+
+  <div class="form-group">
+    <label for="endDate" class="mr-1">End</label>
+    <input type="date" class="form-control" id="endDate" [(ngModel)]="endDate" name="endDate">
+  </div>
+</div>
+
+<div>
+  <canvas #lineChart></canvas>
+</div>
