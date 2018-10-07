@@ -3,13 +3,36 @@
 <div class="form-inline">
   <div class="form-group">
     <label for="startDate" class="mr-1">Start</label>
-    <input type="date" class="form-control mr-1" id="startDate" [(ngModel)]="startDate" name="startDate">
+    <input type="date" class="form-control mr-1" id="startDate" [(ngModel)]="startDate" name="startDate"
+           (ngModelChange)="loadChartData()">
   </div>
 
   <div class="form-group">
     <label for="endDate" class="mr-1">End</label>
-    <input type="date" class="form-control" id="endDate" [(ngModel)]="endDate" name="endDate">
+    <input type="date" class="form-control mr-1" id="endDate" [(ngModel)]="endDate" name="endDate"
+           (ngModelChange)="loadChartData()">
   </div>
+
+  <div class="form-group">
+    <label for="product" class="mr-1">Product</label>
+    <select class="form-control mr-1" id="product" name="product" [(ngModel)]="selectedProductId"
+            (ngModelChange)="loadChartData()">
+      <option [value]="null">-</option>
+      <option *ngFor="let product of products" [value]="product.id">{{product.name}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <app-loading *ngIf="loadingProducts || loadingChart"></app-loading>
+  </div>
+</div>
+
+<div class="alert alert-danger" *ngIf="loadingProductsError">
+  {{loadingProductsError}}
+</div>
+
+<div class="alert alert-danger" *ngIf="loadingChartError">
+  {{loadingChartError}}
 </div>
 
 <div>

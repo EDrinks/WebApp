@@ -1,6 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import * as chart from 'chart.js';
 import * as moment from 'moment';
+import { Product } from '../../services/model/Product';
+import { PRIMARY_PRODUCT } from '../../constants';
+import { finalize } from 'rxjs/operators';
+import { BackendService } from '../../services/backend.service';
+import { DataPoint } from '../../services/model/DataPoint';
 
 @Component({
   selector: 'app-consumption-between-statistic',
@@ -12,13 +17,66 @@ export class ConsumptionBetweenStatisticComponent implements OnInit {
   startDate = '';
   endDate = '';
 
+  products: Product[] = [];
+  selectedProductId: string = null;
+  loadingProducts = false;
+  loadingProductsError = '';
+
+  loadingChart = false;
+  loadingChartError = '';
+
   private chart: any;
+
+  constructor(private service: BackendService) {
+  }
 
   ngOnInit() {
     this.initChart();
+    this.selectedProductId = localStorage.getItem(PRIMARY_PRODUCT);
+    this.loadProducts();
 
     this.startDate = moment().add(-7, 'days').format('YYYY-MM-DD');
     this.endDate = moment().format('YYYY-MM-DD');
+
+    this.loadChartData();
+  }
+
+  loadChartData() {
+    if (this.selectedProductId && this.startDate && this.endDate) {
+      this.loadingChart = true;
+      this.loadingChartError = '';
+      this.chart.data.labels = [];
+      this.chart.data.datasets[0].data = [];
+
+      this.service.getConsumptionBetween(this.selectedProductId, this.startDate, this.endDate)
+        .pipe(finalize(() => {
+          this.loadingChart = false;
+        }))
+        .subscribe((dataPoints: DataPoint[]) => {
+          dataPoints.forEach((dataPoint: DataPoint) => {
+            this.chart.data.labels.push(dataPoint.label);
+            this.chart.data.datasets[0].data.push(dataPoint.value);
+          });
+          this.chart.update();
+        }, (error) => {
+          this.loadingChartError = error;
+        });
+    }
+  }
+
+  private loadProducts() {
+    this.loadingProducts = true;
+    this.loadingProductsError = '';
+
+    this.service.getProducts()
+      .pipe(finalize(() => {
+        this.loadingProducts = false;
+      }))
+      .subscribe((products: Product[]) => {
+        this.products = products;
+      }, (error) => {
+        this.loadingProductsError = error;
+      });
   }
 
   private initChart() {
@@ -38,8 +96,7 @@ export class ConsumptionBetweenStatisticComponent implements OnInit {
         scales: {
           yAxes: [{
             ticks: {
-              beginAtZero: true,
-              stepSize: 1
+              beginAtZero: true
             }
           }]
         }

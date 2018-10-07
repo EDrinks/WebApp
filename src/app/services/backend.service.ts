@@ -106,6 +106,11 @@ export class BackendService {
     return this.getReq(`${this.baseUrl}/api/Statistics/TopTen?productId=${productId}&current=${current}`);
   }
 
+  getConsumptionBetween(productId: string, start: string, end: string) {
+    return this.getReq(`${this.baseUrl}/api/Statistics/ConsumptionBetween?productId=${productId}`
+      + `&start=${start}&end=${end}`);
+  }
+
   private getReq<TResult>(url: string) {
     return this.http.get<TResult>(url)
       .pipe(catchError((error) => {
