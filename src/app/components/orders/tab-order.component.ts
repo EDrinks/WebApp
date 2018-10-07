@@ -35,6 +35,8 @@ export class TabOrderComponent implements OnInit {
   productIdToName = {};
   dateFormat = '';
 
+  spendingSize = 0;
+
   constructor(private service: BackendService, private activeRoute: ActivatedRoute) {
   }
 

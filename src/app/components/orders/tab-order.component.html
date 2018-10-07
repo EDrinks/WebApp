@@ -41,9 +41,13 @@
     <div class="col-sm">
       <h3>{{selectedProduct?.name}} - {{selectedProduct?.price | price}}</h3>
 
-      <button type="button" class="btn btn-lg btn-outline-primary mr-2"
-              *ngFor="let quantity of orderButtons" (click)="orderProduct(quantity)">+{{quantity}}
-      </button>
+      <div class="d-flex justify-content-between">
+        <div>
+          <button type="button" class="btn btn-lg btn-outline-primary mr-2"
+                  *ngFor="let quantity of orderButtons" (click)="orderProduct(quantity)">+{{quantity}}
+          </button>
+        </div>
+      </div>
 
       <div class="alert alert-danger mt-2" *ngIf="creatingOrderError">
         {{creatingOrderError}}
@@ -61,6 +65,26 @@
           <td>(&Sigma; {{getAllProductsSum() | price}})</td>
         </tr>
       </table>
+
+      <hr>
+
+      <div class="form-inline">
+        <div class="form-group">
+          <label for="spendingSize" class="mr-1">Size of spending</label>
+          <div class="input-group mr-1">
+            <input type="number" class="form-control" id="spendingSize" min="0" step="5"
+                   [(ngModel)]="spendingSize">
+            <div class="input-group-append">
+              <span class="input-group-text">{{ selectedProduct?.name }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-outline-success" [disabled]="!spendingSize || spendingSize <= 0">
+            Open Spending
+          </button>
+        </div>
+      </div>
 
       <hr>
 
@@ -88,5 +112,6 @@
       </ul>
 
     </div>
+
   </div>
 </div>
