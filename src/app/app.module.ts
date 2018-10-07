@@ -40,6 +40,7 @@ import { ImpressumComponent } from './components/impressum.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { LoginComponent } from './components/login.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
+import { TopTenStatisticComponent } from './components/statistics/top-ten-statistic.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -72,6 +73,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ImpressumComponent,
     LoginComponent,
     StatisticsComponent,
+    TopTenStatisticComponent,
     // pipes
     PricePipe,
     LocaleDatePipe

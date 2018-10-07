@@ -1,0 +1,35 @@
+<h2>{{'components.statistics.top-ten-tabs' | translate}}</h2>
+
+<div class="form-inline">
+  <div class="form-group">
+    <div class="btn-group">
+      <button type="button" class="btn btn-outline-primary" [ngClass]="{'active': topTenCurrent}"
+              (click)="setTopTenCurrent(true)">
+        {{'components.statistics.current' | translate}}
+      </button>
+      <button type="button" class="btn btn-outline-primary" [ngClass]="{'active': !topTenCurrent}"
+              (click)="setTopTenCurrent(false)">
+        {{'components.statistics.all' | translate}}
+      </button>
+    </div>
+  </div>
+
+  <div class="form-group ml-2">
+    <select class="form-control" [(ngModel)]="selectedProductId" name="selectedProduct"
+            (ngModelChange)="updateTopTenChart()">
+      <option *ngFor="let product of products" [value]="product.id">{{product.name}}</option>
+    </select>
+  </div>
+
+  <div class="form-group ml-2">
+    <app-loading *ngIf="topTenLoading"></app-loading>
+  </div>
+</div>
+
+<div>
+  <div class="alert alert-danger" *ngIf="topTenError">
+    {{topTenError}}
+  </div>
+
+  <canvas #myChart></canvas>
+</div>
