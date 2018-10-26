@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../../services/backend.service';
 import { finalize } from 'rxjs/operators';
 import { Product } from '../../services/model/Product';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Order } from '../../services/model/Order';
 import { Tab } from '../../services/model/Tab';
 
@@ -35,9 +35,7 @@ export class TabOrderComponent implements OnInit {
   productIdToName = {};
   dateFormat = '';
 
-  spendingSize = 0;
-
-  constructor(private service: BackendService, private activeRoute: ActivatedRoute) {
+  constructor(private service: BackendService, private activeRoute: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {
@@ -119,6 +117,10 @@ export class TabOrderComponent implements OnInit {
           this.deletingOrderError = error;
         });
     }
+  }
+
+  onSpendingCreated() {
+    this.router.navigate(['/']);
   }
 
   private loadProducts() {

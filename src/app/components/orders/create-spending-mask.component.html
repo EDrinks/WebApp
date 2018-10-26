@@ -1,0 +1,24 @@
+<div class="form-inline">
+  <div class="form-group">
+    <label for="spendingSize" class="mr-1">Size of spending</label>
+    <div class="input-group mr-1">
+      <input type="number" class="form-control" id="spendingSize" min="0" step="5"
+             [(ngModel)]="spendingSize" [disabled]="loading">
+      <div class="input-group-append">
+        <span class="input-group-text">{{ product?.name }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="button" class="btn btn-outline-success" [disabled]="!spendingSize || spendingSize <= 0 || loading"
+            (click)="createSpending()">
+      <app-loading *ngIf="loading"></app-loading>
+
+      {{'components.tab-order.open-spending' | translate}}
+    </button>
+  </div>
+
+  <div class="text-danger ml-2" *ngIf="error">
+    <app-validation-error [validationError]="error"></app-validation-error>
+  </div>
+</div>

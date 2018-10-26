@@ -111,6 +111,14 @@ export class BackendService {
       + `&start=${start}&end=${end}`);
   }
 
+  createSpending(tabId: string, productId: string, quantity: number) {
+    return this.postReq(`${this.baseUrl}/api/Spendings`, {
+      tabId,
+      productId,
+      quantity
+    });
+  }
+
   private getReq<TResult>(url: string) {
     return this.http.get<TResult>(url)
       .pipe(catchError((error) => {

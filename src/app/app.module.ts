@@ -43,6 +43,7 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
 import { TopTenStatisticComponent } from './components/statistics/top-ten-statistic.component';
 import { ConsumptionBetweenStatisticComponent } from './components/statistics/consumption-between-statistic.component';
 import { SpendingOrderComponent } from './components/orders/spending-order.component';
+import { CreateSpendingMaskComponent } from './components/orders/create-spending-mask.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -78,6 +79,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     StatisticsComponent,
     TopTenStatisticComponent,
     ConsumptionBetweenStatisticComponent,
+    CreateSpendingMaskComponent,
     // pipes
     PricePipe,
     LocaleDatePipe
