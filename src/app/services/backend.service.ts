@@ -9,6 +9,7 @@ import { Tab } from './model/Tab';
 import { Order } from './model/Order';
 import { Settlement } from './model/Settlement';
 import { DataPoint } from './model/DataPoint';
+import { Spending } from './Spending';
 
 @Injectable()
 export class BackendService {
@@ -109,6 +110,10 @@ export class BackendService {
   getConsumptionBetween(productId: string, start: string, end: string) {
     return this.getReq(`${this.baseUrl}/api/Statistics/ConsumptionBetween?productId=${productId}`
       + `&start=${start}&end=${end}`);
+  }
+
+  getSpendings(): Observable<Spending[]> {
+    return this.getReq(`${this.baseUrl}/api/Spendings`);
   }
 
   createSpending(tabId: string, productId: string, quantity: number) {

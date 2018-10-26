@@ -22,6 +22,9 @@
       "load-more": "Load more",
       "sum": "Sum"
     },
+    "start": {
+      "spending": "Spending"
+    },
     "statistics": {
       "all": "All",
       "consumption-between": "Consumption Between",

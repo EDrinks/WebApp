@@ -5,6 +5,7 @@ import { finalize } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { PRIMARY_PRODUCT, QUICK_SELECT } from '../constants';
 import { Product } from '../services/model/Product';
+import { Spending } from '../services/Spending';
 
 @Component({
   selector: 'app-start',
@@ -16,6 +17,9 @@ export class StartComponent implements OnInit {
   products: Product[] = [];
   tabsLoading = false;
   tabsError = '';
+  spendingsLoading = false;
+  spendingsError = '';
+  spendings: Spending[] = [];
 
   quickSelectProduct: string = null;
   tabOrdersInProgress = {};
@@ -26,12 +30,16 @@ export class StartComponent implements OnInit {
   deletingOrder = false;
   deletingOrderError = '';
 
+  tabIdToName = {};
+  productIdToName = {};
+
   constructor(private service: BackendService, private router: Router) {
   }
 
   ngOnInit() {
     this.loadTabs();
     this.loadProducts();
+    this.loadSpendings();
 
     if (localStorage.getItem(QUICK_SELECT) === '1') {
       this.quickSelectProduct = localStorage.getItem(PRIMARY_PRODUCT);
@@ -96,6 +104,10 @@ export class StartComponent implements OnInit {
       }))
       .subscribe((tabs: Tab[]) => {
         this.tabs = tabs;
+        this.tabIdToName = tabs.reduce((mapping: any, tab: Tab) => {
+          mapping[tab.id] = tab.name;
+          return mapping;
+        }, {});
       }, (error) => {
         this.tabsError = error;
       });
@@ -107,8 +119,27 @@ export class StartComponent implements OnInit {
     this.service.getProducts()
       .subscribe((products: Product[]) => {
         this.products = products;
+        this.productIdToName = products.reduce((mapping: any, product: Product) => {
+          mapping[product.id] = product.name;
+          return mapping;
+        }, {});
       }, (error) => {
         this.productsError = error;
+      });
+  }
+
+  private loadSpendings() {
+    this.spendingsLoading = true;
+    this.spendingsError = '';
+
+    this.service.getSpendings()
+      .pipe(finalize(() => {
+        this.spendingsLoading = false;
+      }))
+      .subscribe((spendings: Spending[]) => {
+        this.spendings = spendings;
+      }, (error) => {
+        this.spendingsError = error;
       });
   }
 }
