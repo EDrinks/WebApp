@@ -29,7 +29,7 @@ export class CreateSpendingMaskComponent {
         this.loading = false;
       }))
       .subscribe(() => {
-        this.onSpendingCreated.emit();
+        this.spendingCreated.emit();
       }, (error) => {
         this.error = error;
       });
