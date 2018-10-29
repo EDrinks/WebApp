@@ -24,13 +24,16 @@
       <app-loading *ngIf="spendingsLoading"></app-loading>
 
       <div class="btn-group cmp-Start__spending" *ngFor="let spending of spendings">
-        <button type="button" class="btn btn-outline-success">
+        <button type="button" class="btn btn-outline-success" [disabled]="disabledSpendings[spending.id]">
           {{'components.start.spending' | translate}}
           {{tabIdToName[spending.tabId]}}
           {{productIdToName[spending.productId]}}
           <strong>{{spending.current}}/{{spending.quantity}}</strong>
         </button>
-        <button type="button" class="btn btn-outline-success">+1</button>
+        <button type="button" class="btn btn-outline-success" (click)="orderOnSpending(spending)"
+                [disabled]="disabledSpendings[spending.id]">
+          +1
+        </button>
       </div>
 
       <br>

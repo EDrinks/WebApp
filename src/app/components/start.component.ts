@@ -20,6 +20,7 @@ export class StartComponent implements OnInit {
   spendingsLoading = false;
   spendingsError = '';
   spendings: Spending[] = [];
+  disabledSpendings = {};
 
   quickSelectProduct: string = null;
   tabOrdersInProgress = {};
@@ -75,6 +76,22 @@ export class StartComponent implements OnInit {
     }
   }
 
+  orderOnSpending(spending: Spending) {
+    this.disabledSpendings[spending.id] = true;
+    this.spendingsError = '';
+
+    spending.current += 1;
+    this.service.orderOnSpending(spending.id, 1)
+      .pipe(finalize(() => {
+        this.disabledSpendings[spending.id] = false;
+      }))
+      .subscribe(() => {
+        this.loadSpending(spending.id);
+      }, (error) => {
+        this.spendingsError = error;
+      });
+  }
+
   undoLastOrder() {
     if (this.lastOrders.length > 0) {
       const lastOrder = this.lastOrders[0];
@@ -125,6 +142,23 @@ export class StartComponent implements OnInit {
         }, {});
       }, (error) => {
         this.productsError = error;
+      });
+  }
+
+  private loadSpending(spendingId: string) {
+    this.spendingsError = '';
+
+    this.service.getSpending(spendingId)
+      .subscribe((spending: Spending) => {
+        const index = this.spendings.findIndex((spend: Spending) => {
+          return spend.id === spendingId;
+        });
+
+        if (index >= 0 && spending.current >= spending.quantity) {
+          this.spendings.splice(index, 1);
+        }
+      }, (error) => {
+        this.spendingsError = error;
       });
   }
 

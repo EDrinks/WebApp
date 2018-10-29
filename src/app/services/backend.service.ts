@@ -112,6 +112,10 @@ export class BackendService {
       + `&start=${start}&end=${end}`);
   }
 
+  getSpending(spendingId: string): Observable<Spending> {
+    return this.getReq(`${this.baseUrl}/api/Spendings/${spendingId}`);
+  }
+
   getSpendings(): Observable<Spending[]> {
     return this.getReq(`${this.baseUrl}/api/Spendings`);
   }
@@ -120,6 +124,12 @@ export class BackendService {
     return this.postReq(`${this.baseUrl}/api/Spendings`, {
       tabId,
       productId,
+      quantity
+    });
+  }
+
+  orderOnSpending(spendingId: string, quantity: number) {
+    return this.postReq(`${this.baseUrl}/api/Spendings/${spendingId}/Orders`, {
       quantity
     });
   }
