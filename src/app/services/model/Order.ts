@@ -5,4 +5,5 @@ export class Order {
   tabId: string;
   quantity: number;
   productPrice: number;
+  spendingId: string;
 }

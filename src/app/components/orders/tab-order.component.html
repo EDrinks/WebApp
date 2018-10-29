@@ -89,10 +89,13 @@
       </div>
 
       <ul>
-        <li *ngFor="let order of orders">
+        <li *ngFor="let order of orders" [ngClass]="{'cmp-TabOrder__spendingOrder': order.spendingId}">
           {{order.quantity}}x{{productIdToName[order.productId]}}
           {{order.dateTime | localeDate}}
           (&Sigma; {{order.quantity * order.productPrice | price}})
+
+          <i class="fa fa-money-bill" *ngIf="order.spendingId"
+             title="{{'components.tab-order.ordered-on-spending' | translate}}"></i>
         </li>
       </ul>
 

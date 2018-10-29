@@ -40,6 +40,7 @@
       "no-products-found": "No products found.",
       "open-spending": "Open Spending",
       "ordered-everything": "Ordered Everything",
+      "ordered-on-spending": "Ordered on Spending",
       "ordered-product": "Ordered {{name}}",
       "undo-order": "Undo Order"
     }
