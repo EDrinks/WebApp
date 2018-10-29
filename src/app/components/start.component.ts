@@ -68,7 +68,8 @@ export class StartComponent implements OnInit {
             tabId: tab.id,
             tabName: tab.name,
             orderId: orderId,
-            productName: product ? product.name : ''
+            productName: product ? product.name : '',
+            spendingId: null
           });
         }, (error) => {
           this.orderError = error;
@@ -85,8 +86,15 @@ export class StartComponent implements OnInit {
       .pipe(finalize(() => {
         this.disabledSpendings[spending.id] = false;
       }))
-      .subscribe(() => {
+      .subscribe((orderId: string) => {
         this.loadSpending(spending.id);
+        this.lastOrders.splice(0, 0, {
+          tabId: spending.tabId,
+          tabName: this.tabIdToName[spending.tabId],
+          orderId: orderId,
+          productName: this.productIdToName[spending.productId],
+          spendingId: spending.id
+        });
       }, (error) => {
         this.spendingsError = error;
       });
@@ -104,10 +112,13 @@ export class StartComponent implements OnInit {
         }))
         .subscribe(() => {
           this.lastOrders.splice(0, 1);
+
+          if (lastOrder.spendingId) {
+            this.loadSpending(lastOrder.spendingId);
+          }
         }, (error) => {
           this.deletingOrderError = error;
         });
-
     }
   }
 
@@ -156,6 +167,8 @@ export class StartComponent implements OnInit {
 
         if (index >= 0 && spending.current >= spending.quantity) {
           this.spendings.splice(index, 1);
+        } else if (index >= 0) {
+          this.spendings.splice(index, 1, spending);
         }
       }, (error) => {
         this.spendingsError = error;
@@ -183,4 +196,5 @@ class LastOrder {
   tabName: string;
   orderId: string;
   productName: string;
+  spendingId: string;
 }

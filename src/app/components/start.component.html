@@ -61,7 +61,10 @@
       </div>
 
       <ul>
-        <li *ngFor="let order of lastOrders">1x{{order.productName}} - {{order.tabName}}</li>
+        <li *ngFor="let order of lastOrders">
+          1x{{order.productName}} - {{order.tabName}}
+          <i class="fa fa-money-bill" *ngIf="order.spendingId"></i>
+        </li>
       </ul>
     </div>
   </div>
