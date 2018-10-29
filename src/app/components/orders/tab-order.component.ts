@@ -5,6 +5,7 @@ import { Product } from '../../services/model/Product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Order } from '../../services/model/Order';
 import { Tab } from '../../services/model/Tab';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-tab-order',
@@ -157,7 +158,13 @@ export class TabOrderComponent implements OnInit {
         this.loadingOrders = false;
       }))
       .subscribe((orders: Order[]) => {
-        this.orders = orders;
+        this.orders = orders.sort((a: Order, b: Order) => {
+          if (moment(a.dateTime).isBefore(b.dateTime)) {
+            return 1;
+          }
+
+          return -1;
+        });
       }, (error) => {
         this.loadingOrdersError = error;
       });
