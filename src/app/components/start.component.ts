@@ -51,6 +51,10 @@ export class StartComponent implements OnInit {
     this.router.navigate(['tab', tab.id]);
   }
 
+  selectSpending(spending: Spending) {
+    this.router.navigate(['spending', spending.id]);
+  }
+
   quickOrder(tab: Tab) {
     if (this.quickSelectProduct) {
       this.tabOrdersInProgress[tab.id] = true;

@@ -24,7 +24,8 @@
       <app-loading *ngIf="spendingsLoading"></app-loading>
 
       <div class="btn-group cmp-Start__spending" *ngFor="let spending of spendings">
-        <button type="button" class="btn btn-outline-success" [disabled]="disabledSpendings[spending.id]">
+        <button type="button" class="btn btn-outline-success" [disabled]="disabledSpendings[spending.id]"
+                (click)="selectSpending(spending)">
           {{'components.start.spending' | translate}}
           {{tabIdToName[spending.tabId]}}
           {{productIdToName[spending.productId]}}
