@@ -29,6 +29,9 @@ export class SpendingOrderComponent implements OnInit {
   ordering = false;
   orderingError = '';
 
+  deleting = false;
+  deletingError = '';
+
   constructor(private activatedRoute: ActivatedRoute, private service: BackendService) {
   }
 
@@ -50,15 +53,37 @@ export class SpendingOrderComponent implements OnInit {
       }))
       .subscribe(() => {
         this.spending.current += quantity;
-
-        this.service.getSpending(this.spendingId)
-          .subscribe((spending: Spending) => {
-            this.spending = spending;
-          });
-
+        this.updateSpending();
         this.loadOrders();
       }, (error) => {
         this.orderingError = error;
+      });
+  }
+
+  undoOrder() {
+    if (this.orders.length > 0) {
+      this.deleting = true;
+      this.deletingError = '';
+
+      const order = this.orders[0];
+
+      this.service.deleteOrder(order.tabId, order.id)
+        .pipe(finalize(() => {
+          this.deleting = false;
+        }))
+        .subscribe(() => {
+          this.loadOrders();
+          this.updateSpending();
+        }, (error) => {
+          this.deletingError = error;
+        });
+    }
+  }
+
+  private updateSpending() {
+    this.service.getSpending(this.spendingId)
+      .subscribe((spending: Spending) => {
+        this.spending = spending;
       });
   }
 

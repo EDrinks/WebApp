@@ -33,7 +33,11 @@
     <hr>
 
     <div class="form-group">
-      <button type="button" class="btn btn-danger">{{'components.spending-order.undo-order' | translate}}</button>
+      <button type="button" class="btn btn-danger" [disabled]="deleting" (click)="undoOrder()">
+        {{'components.spending-order.undo-order' | translate}}
+      </button>
+
+      <div class="alert alert-danger mt-2" *ngIf="deletingError">{{deletingError}}</div>
     </div>
 
     <app-loading *ngIf="loadingOrders"></app-loading>
