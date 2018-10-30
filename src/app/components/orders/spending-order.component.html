@@ -13,7 +13,11 @@
   <div *ngIf="!loading">
 
     <div class="float-right">
-      <button type="button" class="btn btn-danger">{{'components.spending-order.close-spending' | translate}}</button>
+      <button type="button" class="btn btn-danger" [disabled]="closingSpending" (click)="closeSpending()">
+        {{'components.spending-order.close-spending' | translate}}
+      </button>
+
+      <p class="text-danger" *ngIf="closingError">{{closingError}}</p>
     </div>
 
     <h2>

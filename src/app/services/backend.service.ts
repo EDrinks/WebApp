@@ -138,6 +138,10 @@ export class BackendService {
     });
   }
 
+  deleteSpending(spendingId: string) {
+    return this.deleteReq(`${this.baseUrl}/api/Spendings/${spendingId}`);
+  }
+
   private getReq<TResult>(url: string) {
     return this.http.get<TResult>(url)
       .pipe(catchError((error) => {

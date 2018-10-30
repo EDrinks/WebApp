@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BackendService } from '../../services/backend.service';
 import { Spending } from '../../services/Spending';
 import { zip } from 'rxjs';
@@ -32,7 +32,10 @@ export class SpendingOrderComponent implements OnInit {
   deleting = false;
   deletingError = '';
 
-  constructor(private activatedRoute: ActivatedRoute, private service: BackendService) {
+  closingSpending = false;
+  closingError = '';
+
+  constructor(private activatedRoute: ActivatedRoute, private service: BackendService, private router: Router) {
   }
 
   ngOnInit() {
@@ -78,6 +81,21 @@ export class SpendingOrderComponent implements OnInit {
           this.deletingError = error;
         });
     }
+  }
+
+  closeSpending() {
+    this.closingSpending = true;
+    this.closingError = '';
+
+    this.service.deleteSpending(this.spendingId)
+      .pipe(finalize(() => {
+        this.closingSpending = false;
+      }))
+      .subscribe(() => {
+        this.router.navigate(['/']);
+      }, (error) => {
+        this.closingError = error;
+      });
   }
 
   private updateSpending() {
