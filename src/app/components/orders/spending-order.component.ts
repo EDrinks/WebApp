@@ -6,6 +6,8 @@ import { zip } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { Tab } from '../../services/model/Tab';
 import { Product } from '../../services/model/Product';
+import { Order } from '../../services/model/Order';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-spending-order',
@@ -19,6 +21,10 @@ export class SpendingOrderComponent implements OnInit {
   tab: Tab;
   product: Product;
 
+  orders: Order[] = [];
+  loadingOrders = false;
+  ordersError = '';
+
   orderButtons = [1, 2, 3, 4, 5];
   ordering = false;
   orderingError = '';
@@ -30,6 +36,7 @@ export class SpendingOrderComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       this.spendingId = params['id'];
       this.loadData();
+      this.loadOrders();
     });
   }
 
@@ -48,6 +55,8 @@ export class SpendingOrderComponent implements OnInit {
           .subscribe((spending: Spending) => {
             this.spending = spending;
           });
+
+        this.loadOrders();
       }, (error) => {
         this.orderingError = error;
       });
@@ -76,6 +85,27 @@ export class SpendingOrderComponent implements OnInit {
       }, (error) => {
         this.error = error;
         this.loading = false;
+      });
+  }
+
+  private loadOrders() {
+    this.loadingOrders = true;
+    this.ordersError = '';
+
+    this.service.getSpendingOrders(this.spendingId)
+      .pipe(finalize(() => {
+        this.loadingOrders = false;
+      }))
+      .subscribe((orders: Order[]) => {
+        this.orders = orders.sort((a: Order, b: Order) => {
+          if (moment(a.dateTime).isBefore(b.dateTime)) {
+            return 1;
+          }
+
+          return -1;
+        });
+      }, (error) => {
+        this.ordersError = error;
       });
   }
 }

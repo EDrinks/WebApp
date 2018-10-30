@@ -120,6 +120,10 @@ export class BackendService {
     return this.getReq(`${this.baseUrl}/api/Spendings`);
   }
 
+  getSpendingOrders(spendingId: string): Observable<Order[]> {
+    return this.getReq(`${this.baseUrl}/api/Spendings/${spendingId}/Orders`);
+  }
+
   createSpending(tabId: string, productId: string, quantity: number) {
     return this.postReq(`${this.baseUrl}/api/Spendings`, {
       tabId,

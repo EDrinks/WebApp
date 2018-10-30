@@ -36,10 +36,14 @@
       <button type="button" class="btn btn-danger">{{'components.spending-order.undo-order' | translate}}</button>
     </div>
 
-    <ul>
-      <li>Order #1</li>
-      <li>Order #1</li>
-      <li>Order #1</li>
+    <app-loading *ngIf="loadingOrders"></app-loading>
+
+    <div class="alert alert-danger" *ngIf="ordersError">
+      {{ordersError}}
+    </div>
+
+    <ul *ngIf="!loadingOrders">
+      <li *ngFor="let order of orders">{{order.quantity}}x {{order.dateTime | localeDate}}</li>
     </ul>
   </div>
 </div>
