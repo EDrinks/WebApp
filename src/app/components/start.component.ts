@@ -173,6 +173,8 @@ export class StartComponent implements OnInit {
           this.spendings.splice(index, 1);
         } else if (index >= 0) {
           this.spendings.splice(index, 1, spending);
+        } else if (index < 0 && spending.current < spending.quantity) {
+          this.spendings.push(spending);
         }
       }, (error) => {
         this.spendingsError = error;
