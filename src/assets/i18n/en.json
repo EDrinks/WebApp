@@ -22,6 +22,10 @@
       "load-more": "Load more",
       "sum": "Sum"
     },
+    "create-spending": {
+      "open-spending": "Open Spending",
+      "size-of-spending": "Size of spending"
+    },
     "spending-order": {
       "close-spending": "Close Spending",
       "spending": "Spending",
@@ -43,7 +47,6 @@
       "create-product": "Create Product",
       "last-orders": "Last Orders",
       "no-products-found": "No products found.",
-      "open-spending": "Open Spending",
       "ordered-everything": "Ordered Everything",
       "ordered-on-spending": "Ordered on Spending",
       "ordered-product": "Ordered {{name}}",
@@ -70,7 +73,6 @@
     "name": "Name"
   },
   "tabs": "Tabs",
-  "title": "Hello World",
   "user-settings": {
     "language": "Language",
     "primary-product": "Primary Product",

@@ -1,11 +1,82 @@
 {
   "common": {
+    "back": "Zurück",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "login": "Login",
     "save": "Speichern"
   },
+  "components": {
+    "active-settlement": {
+      "settle-tabs": "{{value}} Personen abrechnen mit einer Summe von:",
+      "settle-selected-tabs": "Ausgewählte Personen abrechnen",
+      "old-settlements": "Alte Abrechnungen",
+      "sum": "Summe",
+      "tab": "Person"
+    },
+    "all-settlements": {
+      "active-settlement": "Aktuelle Abrechnung",
+      "date": "Datum",
+      "details": "Details",
+      "load-more": "Mehr laden",
+      "sum": "Summe"
+    },
+    "create-spending": {
+      "open-spending": "Klammer öffnen",
+      "size-of-spending": "Größe der Klammer"
+    },
+    "spending-order": {
+      "close-spending": "Klammer schließen",
+      "spending": "Klammer",
+      "undo-order": "Bestellung löschen"
+    },
+    "start": {
+      "spending": "Klammer"
+    },
+    "statistics": {
+      "all": "Alle",
+      "consumption-between": "Verbrauch zwischen",
+      "current": "Aktuell",
+      "end": "Ende",
+      "product": "Produkt",
+      "start": "Start",
+      "top-ten-tabs": "Top 10 Personen"
+    },
+    "tab-order": {
+      "create-product": "Produkt anlegen",
+      "last-orders": "Letzte Bestellungen",
+      "no-products-found": "Keine Produkte gefunden.",
+      "open-spending": "Offene Klammern",
+      "ordered-everything": "Bestellungen gesamt",
+      "ordered-on-spending": "Bestellt auf Klammer",
+      "ordered-product": "{{name}} bestellt",
+      "undo-order": "Bestellung löschen"
+    }
+  },
+  "errors": {
+    "not-found": "Resource wurde nicht gefunden",
+    "server-error": "Server Fehler"
+  },
+  "contributions": "Open Source Lizenzen",
+  "product": {
+    "confirm-delete-product": "Produkt löschen bestätigen",
+    "name": "Name",
+    "name-restriction": "Muss zwischen 3 und 500 Zeichen sein",
+    "price": "Preis",
+    "price-restriction": "Muss mehr als 0 sein"
+  },
   "products": "Produkte",
-  "tabs": "Listen",
-  "title": "Hallo Welt",
+  "settlements": "Abrechnungen",
+  "statistics": "Statistiken",
+  "tab": {
+    "confirm-delete-tab": "Tab löschen bestätigen",
+    "name": "Name"
+  },
+  "tabs": "Personen",
   "user-settings": {
-    "language": "Sprache"
+    "language": "Sprache",
+    "primary-product": "Primär Produkt",
+    "quick-select": "Schnellwahl aktivieren"
   }
 }

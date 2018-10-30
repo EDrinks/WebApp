@@ -1,6 +1,6 @@
 <div class="form-inline">
   <div class="form-group">
-    <label for="spendingSize" class="mr-1">Size of spending</label>
+    <label for="spendingSize" class="mr-1">{{'components.create-spending.size-of-spending' | translate}}</label>
     <div class="input-group mr-1">
       <input type="number" class="form-control" id="spendingSize" min="0" step="5"
              [(ngModel)]="spendingSize" [disabled]="loading">
@@ -14,7 +14,7 @@
             (click)="createSpending()">
       <app-loading *ngIf="loading"></app-loading>
 
-      {{'components.tab-order.open-spending' | translate}}
+      {{'components.create-spending.open-spending' | translate}}
     </button>
   </div>
 
