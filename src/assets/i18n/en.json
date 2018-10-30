@@ -22,6 +22,11 @@
       "load-more": "Load more",
       "sum": "Sum"
     },
+    "spending-order": {
+      "close-spending": "Close Spending",
+      "spending": "Spending",
+      "undo-order": "Undo Order"
+    },
     "start": {
       "spending": "Spending"
     },

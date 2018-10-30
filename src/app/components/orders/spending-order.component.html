@@ -1,3 +1,45 @@
+<a routerLink="/" class="btn btn-secondary ml-2">
+  <i class="fas fa-arrow-left"></i>
+  {{'common.back' | translate}}
+</a>
+
 <div class="container">
-  order on spending
+  <app-loading *ngIf="loading"></app-loading>
+
+  <div class="alert alert-danger" *ngIf="error">
+    {{error}}
+  </div>
+
+  <div *ngIf="!loading">
+
+    <div class="float-right">
+      <button type="button" class="btn btn-danger">{{'components.spending-order.close-spending' | translate}}</button>
+    </div>
+
+    <h2>
+      {{'components.spending-order.spending' | translate}}
+      {{tab.name}} {{product.name}}
+      {{spending.current}}/{{spending.quantity}}
+    </h2>
+
+    <div class="form-group">
+      <button type="button" class="btn btn-outline-primary btn-lg mr-1"
+              *ngFor="let quantity of orderButtons"
+              [disabled]="spending.current + quantity > spending.quantity || ordering"
+              (click)="orderOnSpending(quantity)">+{{quantity}}
+      </button>
+    </div>
+
+    <hr>
+
+    <div class="form-group">
+      <button type="button" class="btn btn-danger">{{'components.spending-order.undo-order' | translate}}</button>
+    </div>
+
+    <ul>
+      <li>Order #1</li>
+      <li>Order #1</li>
+      <li>Order #1</li>
+    </ul>
+  </div>
 </div>
