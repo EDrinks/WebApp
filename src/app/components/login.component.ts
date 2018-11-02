@@ -1,16 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  template: `<div class="container">
-    <button type="button" class="btn btn-primary" (click)="auth.login()">{{'common.login' | translate}}</button>
-  </div>`
+  template: `
+    <div class="container">
+      <button type="button" class="btn btn-primary" (click)="auth.login()">{{'common.login' | translate}}</button>
+    </div>`
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
-  constructor(public auth: AuthService) {
+  constructor(public auth: AuthService, private router: Router) {
+  }
 
+  ngOnInit() {
+    if (this.auth.isAuthenticated()) {
+      this.router.navigate(['/']);
+    }
   }
 }
 
