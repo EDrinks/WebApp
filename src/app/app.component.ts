@@ -42,6 +42,7 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
+    console.log('starting logout with refresh');
     this.auth.logout();
     location.reload();
   }

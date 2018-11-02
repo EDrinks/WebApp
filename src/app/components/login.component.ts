@@ -15,7 +15,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('test auth');
     if (this.auth.isAuthenticated()) {
+      console.log('redirect to root');
       this.router.navigate(['/']);
     }
   }
