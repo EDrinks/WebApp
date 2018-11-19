@@ -49,7 +49,7 @@ export class OldSettlementComponent implements OnInit, OnDestroy {
       });
   }
 
-  private downloadFile(data: Response, mimeType: string, fileName: string) {
+  private downloadFile(data: any, mimeType: string, fileName: string) {
     const blob = new Blob([data], {type: mimeType});
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
