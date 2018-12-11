@@ -42,7 +42,7 @@ export class ConsumptionBetweenStatisticComponent implements OnInit {
   }
 
   loadChartData() {
-    if (this.selectedProductId && this.startDate && this.endDate) {
+    if (this.startDate && this.endDate) {
       this.loadingChart = true;
       this.loadingChartError = '';
       this.chart.data.labels = [];

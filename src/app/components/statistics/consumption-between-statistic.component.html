@@ -17,7 +17,7 @@
     <label for="product" class="mr-1">{{'components.statistics.product' | translate}}</label>
     <select class="form-control mr-1" id="product" name="product" [(ngModel)]="selectedProductId"
             (ngModelChange)="loadChartData()">
-      <option [value]="null">-</option>
+      <option [value]="null">{{'components.statistics.all-products' | translate}}</option>
       <option *ngFor="let product of products" [value]="product.id">{{product.name}}</option>
     </select>
   </div>
