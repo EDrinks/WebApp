@@ -17,6 +17,7 @@
   <div class="form-group ml-2">
     <select class="form-control" [(ngModel)]="selectedProductId" name="selectedProduct"
             (ngModelChange)="updateTopTenChart()">
+      <option [value]="null">{{'components.statistics.all-products' | translate}}</option>
       <option *ngFor="let product of products" [value]="product.id">{{product.name}}</option>
     </select>
   </div>

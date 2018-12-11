@@ -36,6 +36,7 @@
     },
     "statistics": {
       "all": "All",
+      "all-products": "All Products",
       "consumption-between": "Consumption Between",
       "current": "Current",
       "end": "End",
