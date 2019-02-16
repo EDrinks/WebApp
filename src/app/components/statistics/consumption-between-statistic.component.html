@@ -23,6 +23,17 @@
   </div>
 
   <div class="form-group">
+    <div class="btn-group">
+      <button type="button" class="btn btn-outline-primary"
+              (click)="setPerDay(true)" [ngClass]="{'active': perDay}">{{'components.statistics.daily' | translate}}
+      </button>
+      <button type="button" class="btn btn-outline-primary"
+              (click)="setPerDay(false)" [ngClass]="{'active': !perDay}">{{'components.statistics.hourly' | translate}}
+      </button>
+    </div>
+  </div>
+
+  <div class="form-group">
     <app-loading *ngIf="loadingProducts || loadingChart"></app-loading>
   </div>
 </div>

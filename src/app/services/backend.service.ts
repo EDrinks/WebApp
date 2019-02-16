@@ -107,9 +107,9 @@ export class BackendService {
     return this.getReq(`${this.baseUrl}/api/Statistics/TopTen?productId=${productId}&current=${current}`);
   }
 
-  getConsumptionBetween(productId: string, start: string, end: string) {
+  getConsumptionBetween(productId: string, start: string, end: string, perDay: boolean) {
     return this.getReq(`${this.baseUrl}/api/Statistics/ConsumptionBetween?productId=${productId}`
-      + `&start=${start}&end=${end}`);
+      + `&start=${start}&end=${end}&perDay=${perDay}`);
   }
 
   getSpending(spendingId: string): Observable<Spending> {

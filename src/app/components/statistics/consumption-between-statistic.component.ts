@@ -16,6 +16,7 @@ export class ConsumptionBetweenStatisticComponent implements OnInit {
 
   startDate = '';
   endDate = '';
+  perDay = true;
 
   products: Product[] = [];
   selectedProductId: string = null;
@@ -48,7 +49,7 @@ export class ConsumptionBetweenStatisticComponent implements OnInit {
       this.chart.data.labels = [];
       this.chart.data.datasets[0].data = [];
 
-      this.service.getConsumptionBetween(this.selectedProductId, this.startDate, this.endDate)
+      this.service.getConsumptionBetween(this.selectedProductId, this.startDate, this.endDate, this.perDay)
         .pipe(finalize(() => {
           this.loadingChart = false;
         }))
@@ -62,6 +63,11 @@ export class ConsumptionBetweenStatisticComponent implements OnInit {
           this.loadingChartError = error;
         });
     }
+  }
+
+  setPerDay(value: boolean) {
+    this.perDay = value;
+    this.loadChartData();
   }
 
   private loadProducts() {
@@ -81,7 +87,7 @@ export class ConsumptionBetweenStatisticComponent implements OnInit {
 
   private initChart() {
     this.chart = new chart.Chart(this.myChart.nativeElement, {
-      type: 'line',
+      type: 'bar',
       data: {
         labels: ['first', 'second'],
         datasets: [{
