@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  configFile: 'config.user.json'
+  configFile: 'config.user.json',
+  version: 'DEV'
 };
 
 /*
