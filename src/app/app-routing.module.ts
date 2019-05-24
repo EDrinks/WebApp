@@ -22,9 +22,11 @@ import { LoginComponent } from './components/login.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { SpendingOrderComponent } from './components/orders/spending-order.component';
+import { OverviewComponent } from './components/overview.component';
 
 const appRoutes: Routes = [
-  {path: '', component: StartComponent, canActivate: [AuthGuardService]},
+  {path: '', component: StartComponent},
+  {path: 'overview', component: OverviewComponent, canActivate: [AuthGuardService]},
   {path: 'login', component: LoginComponent},
   {path: 'callback', component: CallbackComponent},
   {path: 'tab/:id', component: TabOrderComponent, canActivate: [AuthGuardService]},

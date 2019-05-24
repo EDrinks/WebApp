@@ -14,23 +14,35 @@ export class AuthService {
     this.auth0 = new auth0.WebAuth(this.appConfig.auth);
   }
 
-  public login(): void {
-    this.auth0.authorize();
+  public login(returnUrl?: string): void {
+    if (returnUrl) {
+      const nonce = this.genNonce();
+      window.sessionStorage.setItem(nonce, returnUrl);
+
+      this.auth0.authorize({
+        state: nonce
+      });
+    } else {
+      this.auth0.authorize();
+    }
   }
 
-  public handleAuthentication(): Promise<void> {
-    return new Promise((resolve, reject) => {
-      this.auth0.parseHash((err, authResult) => {
-        if (authResult && authResult.accessToken && authResult.idToken) {
-          window.location.hash = '';
-          this.setSession(authResult);
-          resolve();
-        } else if (err) {
-          reject();
+  public handleAuthentication() {
+    console.log('call handleAuthentication');
+    this.auth0.parseHash((err, authResult) => {
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        window.location.hash = '';
+        this.setSession(authResult);
+
+        const returnUrl = window.sessionStorage.getItem(authResult.state);
+        window.sessionStorage.removeItem(authResult.state);
+        console.log('returnUrl', returnUrl);
+        if (returnUrl) {
+          this.router.navigate(['/products']);
         } else {
-          reject();
+          this.router.navigate(['/overview']);
         }
-      });
+      }
     });
   }
 
@@ -107,5 +119,14 @@ export class AuthService {
     if (this.refreshSubscription) {
       this.refreshSubscription.unsubscribe();
     }
+  }
+
+  // https://stackoverflow.com/a/42406778
+  private genNonce() {
+    const charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._~';
+    const result = [];
+    window.crypto.getRandomValues(new Uint8Array(32)).forEach(c =>
+      result.push(charset[c % charset.length]));
+    return result.join('');
   }
 }

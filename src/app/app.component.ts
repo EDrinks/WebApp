@@ -1,20 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { DATE_FORMAT, LANGUAGE } from './constants';
 import { UserSettingsService } from './services/user-settings.service';
 import { AuthService } from './services/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   year = (new Date()).getFullYear();
 
   constructor(private translate: TranslateService, private userSettings: UserSettingsService,
-              public auth: AuthService, private router: Router) {
+              public auth: AuthService) {
     translate.setDefaultLang('en');
     translate.use('en');
 
@@ -27,18 +26,8 @@ export class AppComponent implements OnInit {
     if (dateFormat) {
       this.userSettings.dateFormat = dateFormat;
     }
-  }
 
-  ngOnInit() {
-    if (!this.auth.isAuthenticated()) {
-      this.auth.handleAuthentication()
-        .then(() => {
-          this.router.navigate(['/']);
-        })
-        .catch(() => {
-          console.log('rejected');
-        });
-    }
+    this.auth.handleAuthentication();
   }
 
   logout() {
