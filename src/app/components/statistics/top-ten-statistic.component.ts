@@ -12,7 +12,7 @@ import { DataPoint } from '../../services/model/DataPoint';
 })
 export class TopTenStatisticComponent implements OnInit, OnDestroy {
 
-  @ViewChild('myChart') myChart: ElementRef;
+  @ViewChild('myChart', { static: true }) myChart: ElementRef;
 
   products: Product[] = [];
   selectedProductId: string = null;

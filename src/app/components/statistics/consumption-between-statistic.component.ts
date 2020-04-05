@@ -12,7 +12,7 @@ import { DataPoint } from '../../services/model/DataPoint';
   templateUrl: './consumption-between-statistic.component.html'
 })
 export class ConsumptionBetweenStatisticComponent implements OnInit {
-  @ViewChild('lineChart') myChart: ElementRef;
+  @ViewChild('lineChart', { static: true }) myChart: ElementRef;
 
   startDate = '';
   endDate = '';
