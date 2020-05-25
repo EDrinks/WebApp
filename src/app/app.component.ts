@@ -36,17 +36,6 @@ export class AppComponent implements OnInit {
           this.router.navigate(['/login']);
         }
       });
-    /*
-    if (!this.auth.isAuthenticated()) {
-      this.auth.handleAuthentication()
-        .then(() => {
-          this.router.navigate(['/']);
-        })
-        .catch(() => {
-          console.log('rejected');
-        });
-    }
-     */
   }
 
   logout() {

@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpBackend, HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AppConfigService {
   backendUrl = '';
   auth: any = {};
+  private http: HttpClient;
 
-  constructor(private http: HttpClient) {
-
+  constructor(private handler: HttpBackend) {
+    this.http = new HttpClient(handler);
   }
 
   load(): Promise<any> {
