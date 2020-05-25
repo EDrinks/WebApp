@@ -14,7 +14,7 @@ export class ProductListComponent implements OnInit {
   errorMessage = '';
   products: Product[] = [];
 
-  @ViewChild('content', { static: false }) content;
+  @ViewChild('content') content;
 
   constructor(private service: BackendService, private modalService: NgbModal) {
   }

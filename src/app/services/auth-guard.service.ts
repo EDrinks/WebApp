@@ -18,7 +18,6 @@ export class AuthGuardService implements CanActivate {
   ): Observable<boolean> | Promise<boolean | UrlTree> | boolean {
     return this.auth.isAuthenticated$.pipe(
       tap(loggedIn => {
-        console.log('>>', loggedIn);
         if (!loggedIn) {
           this.auth.login(state.url);
         }
