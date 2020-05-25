@@ -24,7 +24,7 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
 import { SpendingOrderComponent } from './components/orders/spending-order.component';
 
 const appRoutes: Routes = [
-  {path: '', component: StartComponent, canActivate: [AuthGuardService]},
+  {path: '', component: StartComponent, canActivate: []},
   {path: 'login', component: LoginComponent},
   {path: 'callback', component: CallbackComponent},
   {path: 'tab/:id', component: TabOrderComponent, canActivate: [AuthGuardService]},

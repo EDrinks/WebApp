@@ -29,7 +29,6 @@ import { TabOrderComponent } from './components/orders/tab-order.component';
 import { LoadingComponent } from './components/shared/loading.component';
 import { UserSettingsService } from './services/user-settings.service';
 import { LocaleDatePipe } from './pipes/locale-date.pipe';
-import { AuthService } from './services/auth.service';
 import { CallbackComponent } from './callback.component';
 import { AuthInterceptor } from './misc/auth-interceptor';
 import { SettlementsComponent } from './components/settlements/settlements.component';
@@ -37,7 +36,6 @@ import { ActiveSettlementComponent } from './components/settlements/active-settl
 import { OldSettlementComponent } from './components/settlements/old-settlement.component';
 import { AllSettlementsComponent } from './components/settlements/all-settlements.component';
 import { ImpressumComponent } from './components/impressum.component';
-import { AuthGuardService } from './services/auth-guard.service';
 import { LoginComponent } from './components/login.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { TopTenStatisticComponent } from './components/statistics/top-ten-statistic.component';
@@ -100,7 +98,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    NgbModule.forRoot(),
+    NgbModule,
     AppRoutingModule
   ],
   providers: [
@@ -115,8 +113,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     },
     BackendService,
     UserSettingsService,
-    AuthService,
-    AuthGuardService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

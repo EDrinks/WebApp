@@ -30,6 +30,13 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.auth.isAuthenticated$
+      .subscribe((isLoggedIn: boolean) => {
+        if (!isLoggedIn) {
+          this.router.navigate(['/login']);
+        }
+      });
+    /*
     if (!this.auth.isAuthenticated()) {
       this.auth.handleAuthentication()
         .then(() => {
@@ -39,6 +46,7 @@ export class AppComponent implements OnInit {
           console.log('rejected');
         });
     }
+     */
   }
 
   logout() {

@@ -1,21 +1,29 @@
+import { Injectable } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError, mergeMap } from 'rxjs/operators';
+import { AuthService } from '../services/auth.service';
 
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthInterceptor implements HttpInterceptor {
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const access_token = localStorage.getItem('access_token');
-    if (access_token) {
-      const request = req.clone({
-        setHeaders: {
-          Authorization: `Bearer ${access_token}`
-        }
-      });
-
-      return next.handle(request);
-    }
-
-    return next.handle(req);
+  constructor(private auth: AuthService) {
   }
 
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    return this.auth.getTokenSilently$().pipe(
+      mergeMap(token => {
+        const tokenReq = req.clone({
+          setHeaders: {Authorization: `Bearer ${token}`}
+        });
+        return next.handle(tokenReq);
+      }),
+      catchError(err => throwError(err))
+    );
+  }
 }
