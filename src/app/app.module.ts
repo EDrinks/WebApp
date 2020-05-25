@@ -29,7 +29,6 @@ import { TabOrderComponent } from './components/orders/tab-order.component';
 import { LoadingComponent } from './components/shared/loading.component';
 import { UserSettingsService } from './services/user-settings.service';
 import { LocaleDatePipe } from './pipes/locale-date.pipe';
-import { CallbackComponent } from './callback.component';
 import { AuthInterceptor } from './misc/auth-interceptor';
 import { SettlementsComponent } from './components/settlements/settlements.component';
 import { ActiveSettlementComponent } from './components/settlements/active-settlement.component';
@@ -72,7 +71,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     TabOrderComponent,
     SpendingOrderComponent,
     LoadingComponent,
-    CallbackComponent,
     ImpressumComponent,
     LoginComponent,
     StatisticsComponent,

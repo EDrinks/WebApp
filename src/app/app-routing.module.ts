@@ -12,7 +12,6 @@ import { TabsComponent } from './components/tabs/tabs.component';
 import { TabListComponent } from './components/tabs/tab-list.component';
 import { TabMaskComponent } from './components/tabs/tab-mask.component';
 import { TabOrderComponent } from './components/orders/tab-order.component';
-import { CallbackComponent } from './callback.component';
 import { SettlementsComponent } from './components/settlements/settlements.component';
 import { ActiveSettlementComponent } from './components/settlements/active-settlement.component';
 import { OldSettlementComponent } from './components/settlements/old-settlement.component';
@@ -26,7 +25,6 @@ import { SpendingOrderComponent } from './components/orders/spending-order.compo
 const appRoutes: Routes = [
   {path: '', component: StartComponent, canActivate: []},
   {path: 'login', component: LoginComponent},
-  {path: 'callback', component: CallbackComponent},
   {path: 'tab/:id', component: TabOrderComponent, canActivate: [AuthGuardService]},
   {path: 'spending/:id', component: SpendingOrderComponent, canActivate: [AuthGuardService]},
   {path: 'user-settings', component: UserSettingsComponent, canActivate: [AuthGuardService]},
