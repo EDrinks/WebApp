@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.com/EDrinks/WebApp.svg?branch=master)](https://travis-ci.com/EDrinks/WebApp)
 
 # Edrinks
 
